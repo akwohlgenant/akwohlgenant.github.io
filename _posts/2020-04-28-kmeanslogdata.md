@@ -3,7 +3,7 @@ title: "K-Means Clustering of Well Log Data"
 date: 2020-04-28
 tags: [k-means, clustering, unsupervised learning, well log]
 header:
- image: "/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_20_0.png"
+ image: "/images/zbynek-burival-GrmwVnVSSdU-unsplash.jpg"
 excerpt: "K-Means Clustering, Well Log Data"
 mathjax: "true"
 ---
