@@ -1,10 +1,10 @@
 ---
 layout: posts
 permalink: /data-wrangling/
-title: "Data Wrangling projects"
+title: "Machine Learning Projects"
 author_profile: true
 header:
-  image: "/images/fort point.png"
+  image: "/images/casey-horner-1Mknoq9KnOI-unsplash.jpg"
 ---
 
 
