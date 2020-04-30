@@ -437,7 +437,7 @@ make_log_plot(data_df[data_df['Well Name'] == 'SHRIMPLIN'])
 ```
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_20_0.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_20_0.png)
 
 
 This method of plotting is useful, especially when looking at multiple wells and correlating similar rock layers.  It also allows for visual pattern recognition.
@@ -458,7 +458,7 @@ plt.show()
     
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_22_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_22_1.png)
 
 
 Next, let's look at the distributions of each feature for one well, and also cross-plot the features against one-another.  Let's look at the first well, 'SHRIMPLIN':
@@ -477,7 +477,7 @@ sns.pairplot(data_df[data_df['Well Name']=='SHRIMPLIN']
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_24_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_24_1.png)
 
 
 Now let's look at all of the wells' data together, with the data points colored by well name:
@@ -496,7 +496,7 @@ sns.pairplot(data_df.drop(['Facies','Formation','Depth','NM_M','RELPOS'],
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_26_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_26_1.png)
 
 
 The by-well histograms of the feature data tend to overlay one another with the exception of 'Recruit F9' well which appears to have an offset distribution of the PE variable relative to the other wells.
@@ -617,7 +617,7 @@ plt.show()
     
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_33_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_33_1.png)
 
 
 ## Scale the features:
@@ -641,7 +641,7 @@ plt.show()
     
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_36_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_36_1.png)
 
 
 ## Run the K-means clustering algorithm on the scaled features:
@@ -832,7 +832,7 @@ cluster_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_43_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_43_1.png)
 
 
 
@@ -855,7 +855,7 @@ sns.pairplot(data_df.drop(['Facies','Formation','Depth','NM_M','RELPOS'],
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_44_2.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_44_2.png)
 
 
 ### Compare clusters to facies classes using completeness and homogeneity:
@@ -1040,7 +1040,7 @@ plt.show()
 ```
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_54_0.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_54_0.png)
 
 
 The results of the elbow method in this case are somewhat ambiguous.  A good case can be made from the plot that k=3 is the optimal number of clusters for this dataset.  But it can also be argued that only splitting into three clusters is not very informative for the purpose of identifying geologic groupings.  For instance, the facies interpretations made from the core samples indicated 9 facies or groupings of depth samples.  In the plot above, there is the hint of a second, subtler elbow point at k=7 that might be worth exploring.
@@ -1087,7 +1087,7 @@ plt.show()
 ```
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_59_0.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_59_0.png)
 
 
 Silhouette analysis suggests the optimal number of k-means for this dataset is k=4.
@@ -1149,7 +1149,7 @@ compare_clusters_plot(data_df[data_df['Well Name'] == 'SHRIMPLIN'])
 ```
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_63_0.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_63_0.png)
 
 
 It is difficult to compare the 'Facies' and 'ClusterLabels' tracks because the colors don't match up.  It would be easier to compare if I could map the most likely matching 'Facies' and 'ClusterLabels' values to one another so that they shared the same color on both tracks, but I haven't figured out how to do that yet.  But it does appear that the clustering algorithm has identified similar blocks of data as were identified as being of the same facies.  So k-means clustering could be useful as a way of quickly flagging similar rock layers in many wells that have the same well log data available.
@@ -1175,7 +1175,7 @@ facies1_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_65_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_65_1.png)
 
 
 This suggests that _Facies 1_ most likely maps to _Cluster 8_.
@@ -1203,7 +1203,7 @@ facies2_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_67_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_67_1.png)
 
 
 
@@ -1231,7 +1231,7 @@ facies3_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_68_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_68_1.png)
 
 
 
@@ -1258,7 +1258,7 @@ facies4_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_69_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_69_1.png)
 
 
 
@@ -1286,7 +1286,7 @@ facies5_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_70_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_70_1.png)
 
 
 
@@ -1313,7 +1313,7 @@ facies6_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_71_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_71_1.png)
 
 
 
@@ -1341,7 +1341,7 @@ facies7_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_72_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_72_1.png)
 
 
 
@@ -1369,7 +1369,7 @@ facies8_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_73_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_73_1.png)
 
 
 
@@ -1393,7 +1393,7 @@ facies9_counts
 
 
 
-![png](AndyWohlgenant_Final_Project_18Mar2020-Copy1_files/AndyWohlgenant_Final_Project_18Mar2020-Copy1_74_1.png)
+![png](images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_74_1.png)
 
 
 
