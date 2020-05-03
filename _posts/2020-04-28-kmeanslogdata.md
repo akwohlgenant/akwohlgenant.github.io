@@ -11,11 +11,21 @@ mathjax: "true"
 # K-Means Clustering of Well Log Data from Hugoton Gas Field, Kansas
 
 ## Introduction:
-This project was undertaken in order to utilize the capabilities of the K-means clustering algorithm on subsurface well log data from the Hugoton natural gas field in Kansas.  The dataset for this project was acquired from the Kansas Geological Survey (KGS) (http://www.kgs.ku.edu/), and was inspired by a paper I read in the journal of the Society of Exploration Geophysicists(: https://library.seg.org/doi/pdf/10.1190/tle35100906.1).  My motivation for undertaking this project stems mainly from my own interest in geology and the oil and gas exploration business.  I worked as a geoscientist in the petroleum business for more than 20 years, and often wished there were ways to automate processes that were done by hand and were very time consuming and tedious.  I also hoped that perhaps this methodology could yield insights that weren't obvious to the naked eye, even the eye of an experienced geoscientist.
+This notebook will illustrate an application of the k-means clustering machine learning algorithm to geology in the oil patch.  In fields with many wells, it may be worthwhile to attempt to group subsurface well log data points, both within a well and between wells, based on similarity of well log signature.  These groupings could be meaningful in terms of depositional patterns, facies recognition, pay identification, or just similary of log signature irrespective of underlying meaning for the purposes of correlation.
 <br>
 <br>
-The problem this project will try to address is the need to quickly and accurately identify common lithologies or rock types in many wells that share common well log data.  Often, the majority of wells in a field will have the same types of well log data available, and these data could be used to quickly screen all of the wells to identify rock intervals or layers of interest.  This could be for for several purposes: oil/gas content, risks identification, fresh-water aquifer identification, etc.  A method such as K-Means clustering could prove very valuable as a quick screening tool to narrow down areas for greater focus.
-
+In order to demonstrate the utility of the k-means clustering model for well log data, I will need a well log dataset.  I have chosen to use a dataset from the Hugoton natural gas field in Kansas.  The main reason I have chosen this dataset is that there are already several previous studies published that apply machine learning processes to this dataset, one of which is a paper by Brendon Hall in the geophysical journal _The Leading Edge_ published by the Society of Exploration Geophysicists (SEG) entitled, "Facies classiﬁcation using machine learning" (DOI: 10.1190/tle35100906.1).  In that paper, Brendon Hall laid out the process for building a Support Vector Machine (SVM) model to classify well log data into facies that the model learned from training on wells in which facies designations had already been designated.
+<br>
+<br>
+In this notebook, instead of starting with facies designations that have already been defined (presumably from subsurface core samples), I will attempt to apply a clustering algorithm that will group observations by similarity of multiple log curve data.  The k-means clustering algorithm will be applied, and then I will compare the output to the facies designations to see how well the model approximated the groupings made based on analysis of core samples interpreted facies.
+<br>
+<br>
+The problem this project will try to address how to quickly and accurately identify common lithologies or rock types in many wells that share common well log data.  Often, the majority of wells in a field will have the same types of well log data available, and these data could be used to quickly screen all of the wells to identify rock intervals or layers of interest.  This could be for for several purposes:
+- Identification of pay
+- Identification of drilling risks
+- Fresh water aquifer identification
+- Depositional faciess identification
+- Correlation marker identification
 
 ## Data:
 
