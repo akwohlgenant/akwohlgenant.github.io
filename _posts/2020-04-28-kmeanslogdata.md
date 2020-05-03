@@ -1016,12 +1016,12 @@ print(homogeneity_score(facies,clusters))
     0.2921110756396894
     
 
-**The completeness score approaches 1 when most of the data points that are members of a given class are elements of the same cluster while the homogeneity score approaches 1 when all the clusters contain almost only data points that are member of a single class.**
+The completeness score approaches 1 when most of the data points that are members of a given class are elements of the same cluster while the homogeneity score approaches 1 when all the clusters contain almost only data points that are member of a single class.
 <br>
 <br>
 These scores for completeness and homogeneity of ~0.29 imply that there is not alot of good matching between the classes predicted by clustering and the facies assigned by geologists analyzing core samples.  This isn't too surprising since the facies were not assigned from the well log data that the clustering algorithm is using.
 
-## Rerun with multiple k values; use elbow method to find best number of clusters.
+## Rerun with multiple k values; use elbow method to find "optimum" number of clusters.
 
 
 ```python
@@ -1097,7 +1097,7 @@ plt.show()
 ![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_59_0.png)
 
 
-Silhouette analysis suggests the optimal number of k-means for this dataset is k=4.
+Silhouette analysis suggests the optimal number of k-means for this dataset is k=4.  This may not be an appropriate number for the purposes of meaningful facies designations but could be perfectly reasonable for initial groupings of data for correlation purposes or basic lithology determinations (e.g. sand vs. shale).
 
 
 ```python
@@ -1185,7 +1185,7 @@ facies1_counts
 ![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_65_1.png)
 
 
-This suggests that _Facies 1_ most likely maps to _Cluster 8_.
+This suggests that _Facies 1_ most likely maps to _Cluster 8_.  For other facies labels, it is much more difficult to find an obvious match.
 
 
 ```python
@@ -1214,196 +1214,4 @@ facies2_counts
 
 
 
-```python
-facies3 = data_df[data_df['Facies']==3]
-facies3_counts = facies3['ClusterLabels'].value_counts().sort_index()
-facies3_counts.plot(kind='bar',title='Distribution of Clusters for Facies = 3')
-facies3_counts
-```
 
-
-
-
-    0    139
-    1      5
-    2    101
-    3     77
-    4      5
-    5    240
-    6     12
-    7      1
-    8     35
-    Name: ClusterLabels, dtype: int64
-
-
-
-
-![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_68_1.png)
-
-
-
-```python
-facies4 = data_df[data_df['Facies']==4]
-facies4_counts = facies4['ClusterLabels'].value_counts().sort_index()
-facies4_counts.plot(kind='bar',title='Distribution of Clusters for Facies = 4')
-facies4_counts
-```
-
-
-
-
-    0     3
-    1     8
-    2     1
-    3    60
-    5    30
-    6    57
-    7    24
-    8     1
-    Name: ClusterLabels, dtype: int64
-
-
-
-
-![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_69_1.png)
-
-
-
-```python
-facies5 = data_df[data_df['Facies']==5]
-facies5_counts = facies5['ClusterLabels'].value_counts().sort_index()
-facies5_counts.plot(kind='bar',title='Distribution of Clusters for Facies = 5')
-facies5_counts
-```
-
-
-
-
-    0     7
-    1    88
-    2     6
-    3    29
-    4     5
-    5    15
-    6    53
-    7     9
-    8     5
-    Name: ClusterLabels, dtype: int64
-
-
-
-
-![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_70_1.png)
-
-
-
-```python
-facies6 = data_df[data_df['Facies']==6]
-facies6_counts = facies6['ClusterLabels'].value_counts().sort_index()
-facies6_counts.plot(kind='bar',title='Distribution of Clusters for Facies = 6')
-facies6_counts
-```
-
-
-
-
-    0      1
-    1    244
-    3     74
-    4     14
-    5     14
-    6    103
-    7      7
-    8      5
-    Name: ClusterLabels, dtype: int64
-
-
-
-
-![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_71_1.png)
-
-
-
-```python
-facies7 = data_df[data_df['Facies']==7]
-facies7_counts = facies7['ClusterLabels'].value_counts().sort_index()
-facies7_counts.plot(kind='bar',title='Distribution of Clusters for Facies = 7')
-facies7_counts
-```
-
-
-
-
-    0     1
-    1     5
-    2     3
-    3    21
-    4    16
-    5    15
-    6     1
-    7     9
-    8    27
-    Name: ClusterLabels, dtype: int64
-
-
-
-
-![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_72_1.png)
-
-
-
-```python
-facies8 = data_df[data_df['Facies']==8]
-facies8_counts = facies8['ClusterLabels'].value_counts().sort_index()
-facies8_counts.plot(kind='bar',title='Distribution of Clusters for Facies = 8')
-facies8_counts
-```
-
-
-
-
-    0      8
-    1    244
-    2      5
-    3     70
-    4     89
-    5      9
-    6     59
-    7     10
-    8      4
-    Name: ClusterLabels, dtype: int64
-
-
-
-
-![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_73_1.png)
-
-
-
-```python
-facies9 = data_df[data_df['Facies']==9]
-facies9_counts = facies9['ClusterLabels'].value_counts().sort_index()
-facies9_counts.plot(kind='bar',title='Distribution of Clusters for Facies = 9')
-facies9_counts
-```
-
-
-
-
-    1    55
-    3     1
-    4    94
-    6     7
-    7     4
-    Name: ClusterLabels, dtype: int64
-
-
-
-
-![png](/images/AndyWohlgenant_Final_Project_18Mar2020-Copy1_74_1.png)
-
-
-
-```python
-
-```
