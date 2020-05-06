@@ -12,7 +12,7 @@ locale                   : "en-US"
 title                    : "Andy Wohlgenant"
 title_separator          : "-"
 name                     : "Andy Wohlgenant"
-description              : "Data Science Portfolio"
+description              : "Data Projects"
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -86,7 +86,7 @@ analytics:
 author:
   name             : "Andy Wohlgenant"
   avatar           : "/images/profile_pic.png"
-  bio              : "Data Science Portfolio"
+  bio              : "Data Projects"
   location         : "Campbell, CA"
   email            : "akwohlg@gmail.com"
   uri              :
