@@ -12,7 +12,7 @@ mathjax: "true"
 
 ## Abstract
 
-This project investigates the General Social Survey (GSS) dataset from the University of Chicago.  I will use the statistical analysis capabilities of R to investigate the question of whether there is a significant difference between white and African American women in the average age at which a woman's first child is born.  Along the way, I will do some exploratory data analysis, and see what special packages and functions R has for statistical inference.
+This project investigates the General Social Survey (GSS) dataset from the University of Chicago.  I will use the statistical analysis capabilities of R to investigate the question of whether there is a significant racial difference among US women in the average age at which a woman's first child is born.  Along the way, I will do some exploratory data analysis, and see what special packages and functions R has for statistical inference.
 
 ### Load packages
 
