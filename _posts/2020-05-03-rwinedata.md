@@ -10,7 +10,7 @@ mathjax: "true"
 
 ### Introduction
 
-Many people around the world enjoy wine. There are hundreds of varieties
+Like . There are hundreds of varieties
 of wine produced in countries ranging from Armenia to Uruguay. A number
 of websites and periodicals compile information about wines in order to
 help consumers choose wines and learn more about them. The magazine
@@ -234,7 +234,7 @@ country:
 ggplot(data=wine_country, aes(x=reorder(country, -Count), y=Count)) + geom_bar(stat='identity', fill='blue') + theme(axis.text.x=element_text(angle=90, hjust=1))
 ```
 
-![png](/images/unnamed-chunk-8-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-8-1.png)<!-- -->
 
 As we can see, the top three countries make up the bulk of the wines,
 and the counts tail off rapidly in the rest of the countries
@@ -264,7 +264,7 @@ wine_varieties <- wine %>%
 ggplot(data=wine_varieties, aes(x=reorder(variety, -count), y=count)) + geom_bar(stat='identity', fill='red') + theme(axis.text.x=element_text(angle=90, hjust=1))
 ```
 
-![png](/images/unnamed-chunk-10-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-10-1.png)<!-- -->
 
 As we can see above, the four most reviewed wines are Pinot Noir,
 Chardonnay, Cabernet Sauvignon, and Red Blend. This distribution is not
@@ -279,7 +279,7 @@ distribution:
 hist(wine$price)
 ```
 
-![png](/images/unnamed-chunk-11-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-11-1.png)<!-- -->
 
 This is not a very informative plot, because the right tail is so long
 and consists of very few observations for each bin. So let’s limit the
@@ -291,7 +291,7 @@ mod_price <- wine %>%
 hist(mod_price$price)
 ```
 
-![png](/images/unnamed-chunk-12-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-12-1.png)<!-- -->
 
 Here it apparent that the prices are highly concentrated in the low
 range, with a long tail extending out into the higher prices
@@ -317,7 +317,7 @@ Now a histogram of the wine ratings represented by the variable
 hist(wine$points)
 ```
 
-![png](/images/unnamed-chunk-14-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-14-1.png)<!-- -->
 
 This distribution appears to be nearly normal, with a peak around 87-88
 points. Below is a statistical summary:
@@ -371,7 +371,7 @@ better with a bar
 ggplot(data=as_tibble(price_bins), mapping=aes(x=value)) + geom_bar()
 ```
 
-![png](/images/unnamed-chunk-18-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-18-1.png)<!-- -->
 
 Next, we can use these price bins as a way to compare with wine points
 and investigate the question of whether a relationship exists between
@@ -414,7 +414,7 @@ ggplot(data=wb_group, mapping = aes(x=price_bin, y=points)) + geom_jitter(color=
   geom_boxplot(fill='bisque', color='black', alpha=0.3) + theme_minimal()
 ```
 
-![png](/images/unnamed-chunk-20-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-20-1.png)<!-- -->
 
 We can see from this visualization not only the spread in the underlying
 price data for each bin, but also the progression of the median points
@@ -510,7 +510,7 @@ wordcloud(rownames(freq), freq[,1], max.words=50, colors=brewer.pal(1, "Dark2"))
 
     ## Warning in brewer.pal(1, "Dark2"): minimal value for n is 3, returning requested palette with 3 different levels
 
-![png](/images/unnamed-chunk-25-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-25-1.png)<!-- -->
 
 The word cloud above is limited to 50 words, but gives a good idea of
 the kinds of words that are frequently used in the wine descriptions in
