@@ -17,9 +17,12 @@ of regions in countries ranging from Armenia to Uruguay, with a dizzying
 array of naming conventions that can be downright confusing. And I, like
 many people, am interested in learning more about wines, maybe in the
 hope of finding a cheap, underrated bargain at my local liquor store.
+
 Luckily, there are myriad magazines and websites devoted entirely to the
 discussion, reviewing, and rating of wines. One of the most popular of
 such magazines and websites is *Wine Enthusiast*.
+
+![png](/images/wine_enthusiast.png)<!-- -->
 
 *Wine Enthusiast* was founded in 1988 by Adam and Sybil Strum, and now
 has a circulation of more than 250,000. One of the most popular features
@@ -29,7 +32,9 @@ both useful and not so useful. Information found in a given review
 includes: the country and region of origin, the name of the vintner or
 winery, the variety (e.g. Pinot Noir), the price (arguably the most
 important feature), the name of the reviewer, and even the reviewer’s
-*Twitter* handle. In addition to descriptive information, each review
+*Twitter* handle.
+
+In addition to descriptive information, each review
 contains a rating or “points” awarded to the wine based on a variety of
 categories. The ratings are purported to be on a 100-point scale,
 although in reality it is just a 20-point scale from 80 to 100 points.
