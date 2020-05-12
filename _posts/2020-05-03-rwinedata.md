@@ -458,47 +458,16 @@ nowords <- c("the", "and", "wine", "with", "this", "flavors", "its", "that", "ha
 
 ``` r
 wine_corpus = tm_map(wine_corpus, content_transformer(tolower))
-```
-
-    ## Warning in tm_map.SimpleCorpus(wine_corpus, content_transformer(tolower)):
-    ## transformation drops documents
-
-``` r
 wine_corpus = tm_map(wine_corpus, removeNumbers)
-```
-
-    ## Warning in tm_map.SimpleCorpus(wine_corpus, removeNumbers): transformation drops
-    ## documents
-
-``` r
 wine_corpus = tm_map(wine_corpus, removePunctuation)
-```
-
-    ## Warning in tm_map.SimpleCorpus(wine_corpus, removePunctuation): transformation
-    ## drops documents
-
-``` r
 wine_corpus = tm_map(wine_corpus, removeWords, nowords)
-```
-
-    ## Warning in tm_map.SimpleCorpus(wine_corpus, removeWords, nowords):
-    ## transformation drops documents
-
-``` r
 wine_corpus =  tm_map(wine_corpus, stripWhitespace)
 ```
-
-    ## Warning in tm_map.SimpleCorpus(wine_corpus, stripWhitespace): transformation
-    ## drops documents
 
 ``` r
 inspect(wine_corpus[846])
 ```
-
-    ## <<SimpleCorpus>>
-    ## Metadata:  corpus specific: 1, document level (indexed): 0
-    ## Content:  documents: 1
-    ## 
+  
     ## [1] fragrant fresh grillo opens alluring scents of acacia flower beeswax white stone fruit succulent palate creamy white peach juicy nectarine almond mineral framed in tangy acidity a note of chopped herb closes lingering finish
 
 An inspection above the description for element number 846 in the corpus
