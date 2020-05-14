@@ -90,7 +90,7 @@ author:
   location         : "Campbell, CA"
   email            : "akwohlg@gmail.com"
   uri              :
-  home             : # null (default), "absolute or relative url to link to author home"
+  home             : "https://public.tableau.com/profile/andy.wohlgenant1206#!/""
   bitbucket        :
   codepen          :
   dribbble         :
@@ -108,7 +108,7 @@ author:
   soundcloud       :
   stackoverflow    : # "123456/username" (the last part of your profile url, e.g. https://stackoverflow.com/users/123456/username)
   steam            : # "steamId" (the last part of your profile url, e.g. https://steamcommunity.com/id/steamId/)
-  tumblr           : "https://public.tableau.com/profile/andy.wohlgenant1206#!/"
+  tumblr           : 
   twitter          :
   vine             :
   weibo            :
