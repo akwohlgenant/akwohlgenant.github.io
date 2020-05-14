@@ -14,7 +14,7 @@ This is a dashboard I built in Tableau using the same dataset as the "Wine Data:
  
 <center>
 
-<iframe src="https://public.tableau.com/views/WineEnthusiastReviewData/Dashboard1?:showVizHome=no&amp;:embed=true" width="100%" height="1177" frameborder="0">
+<iframe src="https://public.tableau.com/views/WineReviewsPricesandPointsExploringtheWineEnthusiastData-Portrait/Dashboard2?:showVizHome=no&amp;:embed=true" width="100%" height="1000" frameborder="0">
 
 </iframe>
 
