@@ -201,7 +201,7 @@ plot:
 ggplot(gss_count_yr, aes(x=year, y=count)) + geom_bar(stat='identity', fill='red')
 ```
 
-![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![png](/images/2020_05_08_gssdata_images/unnamed-chunk-5-1.png)<!-- -->
 
 It is apparent from this plot that the data were collected either every
 year or every other year, but the data counts have increased over time,
@@ -350,7 +350,7 @@ races:
 boxplot(agekdbrn ~ race, data=gss_gt1999_f)
 ```
 
-![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
+![png](/images/2020_05_08_gssdata_images/unnamed-chunk-16-1.png)<!-- -->
 
 And now let’s see the histograms for both races:
 
@@ -361,7 +361,7 @@ ggplot(gss_gt1999_f, aes(x=agekdbrn, color=race)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
+![png]/images/2020_05_08_gssdata_images/unnamed-chunk-17-1.png)<!-- -->
 
 This plot really illustrates a marked difference between the two races
 in the sample. The white respondents histogram reaches a peak at around
@@ -382,7 +382,7 @@ respondents:
 qqnorm(gss_gt1999_f_b$agekdbrn, main="Normal Q-Q Plot: Black Respondents")
 ```
 
-![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+![png](/images/2020_05_08_gssdata_images/unnamed-chunk-18-1.png)<!-- -->
 
 Then for white
 respondents:
@@ -391,7 +391,7 @@ respondents:
 qqnorm(gss_gt1999_f_w$agekdbrn, main="Normal Q-Q Plot: White Respondents")
 ```
 
-![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+![png](/images/2020_05_08_gssdata_images/unnamed-chunk-19-1.png)<!-- -->
 
 Neither variable split plots on a straight line, indicating that the
 data are skewed (which we already knew\!)
@@ -439,7 +439,7 @@ inference(y = agekdbrn, x = race, data = gss_gt1999_f, statistic = "mean", type 
     ## t = 16.9911, df = 1262
     ## p_value = < 0.0001
 
-![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
+![png](/images/2020_05_08_gssdata_images/unnamed-chunk-20-1.png)<!-- -->
 
 Recall that the null hypothesis is that there is no difference between
 the mean age of white women and black women when their first children
@@ -466,7 +466,7 @@ inference(y = agekdbrn, x = race, data = gss_gt1999_f, statistic = "mean", type 
     ## n_Black = 1263, y_bar_Black = 20.7324, s_Black = 4.6382
     ## 95% CI (White - Black): (2.207 , 2.7832)
 
-![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
+![png](/images/2020_05_08_gssdata_images/unnamed-chunk-21-1.png)<!-- -->
 
 95% CI (White - Black): (2.207 , 2.7832)
 
