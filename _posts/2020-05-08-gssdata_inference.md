@@ -1,18 +1,11 @@
----
-title: "General Social Survey Data: Statistical Inference using R"
-date: 2020-05-03
-tags: [statistics, inference]
-header:
- image: "/images/aditya-romansa-5zp0jym2w9M-unsplash.jpg"
-excerpt: "GSS Data: Statistical Inference"
-mathjax: "true"
----
+Untitled
+================
 
+### Andro Wohlgenant
 
+### December 22, 2019
 
-## Abstract
-
-This project investigates the General Social Survey (GSS) dataset from the University of Chicago.  I will use the statistical analysis capabilities of R to investigate the question of whether there is a significant racial difference among US women in the average age at which a woman's first child is born.  Along the way, I will do some exploratory data analysis, and see what special packages and functions R has for statistical inference.
+## Setup
 
 ### Load packages
 
@@ -144,9 +137,10 @@ races transition to having children, whether planned or not.
 Hypothesis for testing if the average age of women at the time of the
 birth of their first child is different for white and black women:
 
-\(H_0: \mu_{white} = \mu_{black}\)
-
-\(H_A: \mu_{white} \ne \mu_{black}\)
+\[
+H_0: \mu_{white} = \mu_{black}\\
+H_A: \mu_{white} \ne \mu_{black}
+\]
 
 The null hypothesis is there is no difference in the average age of
 black and white women at the time of the birth of their first child. The
@@ -202,7 +196,7 @@ plot:
 ggplot(gss_count_yr, aes(x=year, y=count)) + geom_bar(stat='identity', fill='red')
 ```
 
-![png](/images/unnamed-chunk-5-1.png)<!-- -->
+![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
 
 It is apparent from this plot that the data were collected either every
 year or every other year, but the data counts have increased over time,
@@ -351,7 +345,7 @@ races:
 boxplot(agekdbrn ~ race, data=gss_gt1999_f)
 ```
 
-![png](/images/unnamed-chunk-16-1.png)<!-- -->
+![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-16-1.png)<!-- -->
 
 And now let’s see the histograms for both races:
 
@@ -362,7 +356,7 @@ ggplot(gss_gt1999_f, aes(x=agekdbrn, color=race)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![png](/images/unnamed-chunk-17-1.png)<!-- -->
+![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-17-1.png)<!-- -->
 
 This plot really illustrates a marked difference between the two races
 in the sample. The white respondents histogram reaches a peak at around
@@ -370,8 +364,34 @@ in the sample. The white respondents histogram reaches a peak at around
 respondents histogram actually reaches a peak at around 17 years,
 significantly lower than the calculated mean of 20.73 years.
 
-It is noted that both histograms are right-skewed, but generally appear
-to be approximately normally distributed.
+It is noted that both histograms are slighty right-skewed. The sample
+sizes are both quite large though, so we should be able to assume that
+the sampling distributions for both race samples will be normal, and
+therefore we can use the t-distribution for inference looking at the
+difference between two sample means.
+
+Let’s take a look at a normal probability plot, first for black
+respondents:
+
+``` r
+qqnorm(gss_gt1999_f_b$agekdbrn, main="Normal Q-Q Plot: Black Respondents")
+```
+
+![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-18-1.png)<!-- -->
+
+Then for white
+respondents:
+
+``` r
+qqnorm(gss_gt1999_f_w$agekdbrn, main="Normal Q-Q Plot: White Respondents")
+```
+
+![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-19-1.png)<!-- -->
+
+Neither variable split plots on a straight line, indicating that the
+data are skewed (which we already knew\!)
+
+Let’s move on to the inference part.
 
 -----
 
@@ -414,7 +434,7 @@ inference(y = agekdbrn, x = race, data = gss_gt1999_f, statistic = "mean", type 
     ## t = 16.9911, df = 1262
     ## p_value = < 0.0001
 
-![png](/images/unnamed-chunk-18-1_2.png)<!-- -->
+![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-20-1.png)<!-- -->
 
 Recall that the null hypothesis is that there is no difference between
 the mean age of white women and black women when their first children
@@ -441,7 +461,7 @@ inference(y = agekdbrn, x = race, data = gss_gt1999_f, statistic = "mean", type 
     ## n_Black = 1263, y_bar_Black = 20.7324, s_Black = 4.6382
     ## 95% CI (White - Black): (2.207 , 2.7832)
 
-![png](/images/unnamed-chunk-19-1.png)<!-- -->
+![](2020-05-08-gssdata_inference_files/figure-gfm/unnamed-chunk-21-1.png)<!-- -->
 
 95% CI (White - Black): (2.207 , 2.7832)
 
