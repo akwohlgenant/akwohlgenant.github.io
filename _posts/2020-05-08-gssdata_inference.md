@@ -142,10 +142,10 @@ races transition to having children, whether planned or not.
 Hypothesis for testing if the average age of women at the time of the
 birth of their first child is different for white and black women:
 
-\[
+$$
 H_0: \mu_{white} = \mu_{black}\\
 H_A: \mu_{white} \ne \mu_{black}
-\]
+$$
 
 The null hypothesis is there is no difference in the average age of
 black and white women at the time of the birth of their first child. The
