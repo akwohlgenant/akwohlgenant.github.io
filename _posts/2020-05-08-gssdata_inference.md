@@ -1,11 +1,16 @@
-Untitled
-================
+---
+title: "General Social Survey Data: Statistical Inference using R"
+date: 2020-05-03
+tags: [statistical inference, hypothesis testing, gss]
+header:
+ image: "/images/aditya-romansa-5zp0jym2w9M-unsplash.jpg"
+excerpt: "GSS Data: Statistical Inference"
+mathjax: "true"
+---
 
-### Andro Wohlgenant
+### Abstract
 
-### December 22, 2019
-
-## Setup
+This project investigates the General Social Survey (GSS) dataset from the University of Chicago. I will use the statistical analysis capabilities of R to investigate the question of whether there is a significant racial difference among US women in the average age at which a woman’s first child is born. Along the way, I will do some exploratory data analysis, and see what special packages and functions R has for statistical inference.
 
 ### Load packages
 
