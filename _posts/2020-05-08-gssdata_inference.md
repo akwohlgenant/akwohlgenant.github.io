@@ -361,7 +361,7 @@ ggplot(gss_gt1999_f, aes(x=agekdbrn, color=race)) +
 
     ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 
-![png]/images/2020_05_08_gssdata_images/unnamed-chunk-17-1.png)<!-- -->
+![png](/images/2020_05_08_gssdata_images/unnamed-chunk-17-1.png)<!-- -->
 
 This plot really illustrates a marked difference between the two races
 in the sample. The white respondents histogram reaches a peak at around
