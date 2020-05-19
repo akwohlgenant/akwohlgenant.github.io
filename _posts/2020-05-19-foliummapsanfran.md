@@ -541,7 +541,7 @@ sf_map
 
 I haven't figured out how to make the interactive folium map display here yet, so in the meantime, here's a screenshot of the map from the Jupyter Notebook:
 
-![png](/images/sanfran_map1.png)<!-- -->
+![png](/images/sanfran_map1.PNG)<!-- -->
 
 Next, I will create a map layer containing the most recent incident locations:
 
@@ -569,7 +569,7 @@ sf_map.add_child(incident_group)
 
 Again, the embedded folium map isn't working here in github pages, but it works fine in the Jupyter Notebook, so here's a screenshot:
 
-![png](/images/sanfran_map2.png)<!-- -->
+![png](/images/sanfran_map2.PNG)<!-- -->
 
 Now I can see where the crimes took place, but I can't see any information about each crime.  Nex I will add information about the posted incidents using the contents of the "Incident Category" column.  That space in the variable name might cause problems, so I will shorten the name of that column from "Incident Category" to just "Category". Then I will add the category description text as a feature on the map that will "popup" when I click on the marker for a particular incident.
 
@@ -597,6 +597,6 @@ for lat, lng, label in zip(incidents200.Latitude, incidents200.Longitude, incide
 sf_map
 ```
 
-![png](/images/sanfran_map3.png)<!-- -->
+![png](/images/sanfran_map3.PNG)<!-- -->
 
 Now when I click on a marker, the text from the Category field shows in a popup on the map.  That's all I have on this topic for now, but maybe I will think of something else to add to this map in the future.  Thanks for reading this!
