@@ -10,24 +10,21 @@ mathjax: "true"
 
 ## Introduction:
 
-Full disclosure: this notebook is a variation on a class project from the IBM Data Science Professional Certificate program through Coursera that I completed in  the fall of 2019. This particular project was part of course 7 of the series, entitled _Data Visualization with Python_.
+Full disclosure: this notebook is a variation on a class project from the IBM Data Science Professional Certificate program through Coursera that I completed in  the fall of 2019. This particular project was part of Course 7 of the series, entitled _Data Visualization with Python_.
 <br>
 <br>
-A map of San Francisco will be constructed using the **folium** library.  Then crime incidents will be posted to the map from a csv file downloaded from the city of San Francisco consisting of all criminal incidents since 2018.  That file contains too many data points to comfortably view on a map, so I will reduce the number of incidents before plotting them.  Then I will add descriptive information to the map about each crime, accessible as a popup when a particular incident marker is clicked.
-
+In this notebook, I will construct a map of San Francisco using the **folium** library for Python, and then I will post crime incidents to the map from a data file containing criminal incidents since 2018.  That file contains too many data points to comfortably view on a map, so I will reduce the number of incidents before plotting them.  Then I will add descriptive information to the map about each crime, accessible as a popup when a particular incident marker is clicked.
 
 ```python
 # In case folium needs to be installed...
 #!conda install -c conda-forge folium=0.10.0 --yes
 ```
 
-
 ```python
 import pandas as pd
 import numpy as np
 import folium
 ```
-
 ### Data:
 As noted earlier, the crime data for this notebook can be downloaded from the city of San Francisco's open data site.  A link to the data is provided below.
 <br>
@@ -35,13 +32,10 @@ Data source:
 <br>
 https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783
 
-
 ```python
 incidents = pd.read_csv('Police_Department_Incident_Reports__2018_to_Present.csv')
 incidents.head()
 ```
-
-
 
 
 <div>
@@ -261,7 +255,7 @@ cols
 
 
 
-I will also want to include some information about the type of criminial incident.  I will take a quick look at the "Incident Category" column to see what kind of information it contains.
+I will also want to include some information about the type of criminal incident.  I will take a quick look at the "Incident Category" column to see what kind of information it contains.
 
 
 ```python
@@ -520,7 +514,7 @@ incidents200.shape
 
 
 ### Folium Maps: 
-Use the folium library to make a basemap centered on the city of San Francisco.
+Now I will use the folium library to make a basemap centered on the city of San Francisco; I pulled the latitude and longitude from the Wikipedia entry for San Francisco.
 
 
 ```python
@@ -539,11 +533,11 @@ sf_map = folium.Map(location=[latitude, longitude], zoom_start=10)
 sf_map
 ```
 
-I haven't figured out how to make the interactive folium map display here yet, so in the meantime, here's a screenshot of the map from the Jupyter Notebook:
+I haven't figured out how to make the interactive folium map display here in Github Pages, so, in the meantime, here's a screenshot of the map as it's rendered in the source Jupyter Notebook:
 
 ![png](/images/sanfran_map1.PNG)<!-- -->
 
-Next, I will create a map layer containing the most recent incident locations:
+Next, I will create a map layer containing the most recent incident locations and place a circle marker at each location:
 
 
 ```python
@@ -567,11 +561,11 @@ sf_map.add_child(incident_group)
 ```
 
 
-Again, the embedded folium map isn't working here in github pages, but it works fine in the Jupyter Notebook, so here's a screenshot:
+Again, the embedded folium map isn't working here in Github Pages, but it works fine in my Jupyter Notebook, so here's a screenshot:
 
 ![png](/images/sanfran_map2.PNG)<!-- -->
 
-Now I can see where the crimes took place, but I can't see any information about each crime.  Nex I will add information about the posted incidents using the contents of the "Incident Category" column.  That space in the variable name might cause problems, so I will shorten the name of that column from "Incident Category" to just "Category". Then I will add the category description text as a feature on the map that will "popup" when I click on the marker for a particular incident.
+Now I can see where the crimes took place, but I can't see any information about each crime.  Next I will add information about the posted incidents using the contents of the "Incident Category" column.  That space in the variable name might cause problems, so I will shorten the name of that column from "Incident Category" to just "Category". Then I will add the category description text as a feature on the map that will "popup" when I click on the marker for a particular incident.
 
 
 ```python
