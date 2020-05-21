@@ -26,11 +26,7 @@ import numpy as np
 import folium
 ```
 ### Data:
-As noted earlier, the crime data for this notebook can be downloaded from the city of San Francisco's open data site.  A link to the data is provided below.
-<br>
-Data source:
-<br>
-https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783
+As noted earlier, the crime data for this notebook can be downloaded from the city of San Francisco's open data site, [here](https://data.sfgov.org/Public-Safety/Police-Department-Incident-Reports-2018-to-Present/wg3w-h783).
 
 ```python
 incidents = pd.read_csv('Police_Department_Incident_Reports__2018_to_Present.csv')
