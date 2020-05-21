@@ -4,7 +4,7 @@ date: 2020-05-03
 tags: [k-means, clustering, unsupervised learning, well log]
 header:
  image: "/images/elle_hughes_wine_pic.jpg"
-excerpt: "Exploratory Data Analysis in R"
+excerpt: "Exploratory analysis of Wine Spectator dataset in R"
 mathjax: "true"
 ---
 

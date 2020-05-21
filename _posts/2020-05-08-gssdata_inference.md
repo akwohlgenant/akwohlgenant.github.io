@@ -4,7 +4,7 @@ date: 2020-05-03
 tags: [statistical inference, hypothesis testing, gss]
 header:
  image: "/images/aditya-romansa-5zp0jym2w9M-unsplash.jpg"
-excerpt: "GSS Data: Statistical Inference"
+excerpt: "GSS Data...statistical analysis capabilities of R "
 mathjax: "true"
 ---
 

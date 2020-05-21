@@ -4,7 +4,7 @@ date: 2020-04-28
 tags: [k-means, clustering, unsupervised learning, well log]
 header:
  image: "/images/zbynek-burival-GrmwVnVSSdU-unsplash.jpg"
-excerpt: "K-Means Clustering, Well Log Data"
+excerpt: "K-means clustering of geological well log data"
 mathjax: "true"
 ---
 

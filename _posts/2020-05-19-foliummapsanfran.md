@@ -4,7 +4,7 @@ date: 2020-05-19
 tags: [folium, python, map]
 header:
  image: "/images/gordon-mak-_fSrmawumtQ-unsplash.jpg"
-excerpt: "Mapping San Francisco, Folium"
+excerpt: "map of San Francisco crime data using the folium library"
 mathjax: "true"
 ---
 
@@ -297,7 +297,7 @@ incidents.shape
 
 
 
-This is a huge file; there is no way I could post 340,000 + incidents o a single map.  So I will narrow it down to just show a couple hundred of the most recent incidents.  But it appears the file is not sorted in time order, so I will sort it now, descending by the DateTime column.
+This is a huge file; there is no way I could post 340,000 + incidents on a single map.  So I will narrow it down to just show a couple hundred of the most recent incidents.  But it appears the file is not sorted in time order, so I will sort it now, descending by the DateTime column.
 
 
 ```python
