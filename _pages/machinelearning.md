@@ -1,10 +1,10 @@
 ---
 layout: posts
 permalink: /data-wrangling/
-title: "Project Notebooks"
+title: "Data Projects"
 author_profile: true
 header:
-  image: "/images/casey-horner-1Mknoq9KnOI-unsplash.jpg"
+  image: "/images/v2osk-P_hTMaVlkzk-unsplash.jpg"
 ---
 
 
