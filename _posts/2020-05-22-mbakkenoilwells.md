@@ -3,7 +3,7 @@ title: "Middle Bakken Oil and Gas Wells"
 date: 2020-05-22
 tags: [oil, Bakken, Tableau, dashboard]
 header:
- image:
+ image: "/images/colton-sturgeon-f7ADPPOG_EQ-unsplash.jpg"
 excerpt: "Middle Bakken Oil and Gas Wells Dashboard"
 mathjax: "true"
 ---
@@ -14,7 +14,7 @@ This is a dashboard I built in Tableau using a dataset downloaded from the North
 
 Select an operator and/or a range of completion dates to see the filtered wells and their respective cumulative oil production in the map view.
 
-Please feel free to contact me with any suggestions.  Comment...I've tried to update this and it keeps giving me some error....
+Please feel free to contact me with any suggestions to make this better!
  
 <center>
 
