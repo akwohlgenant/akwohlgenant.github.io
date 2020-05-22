@@ -1,5 +1,5 @@
 ---
-title: "Middle Bakken Oil and Gas Wells"
+title: "North Dakota's Bakken Oil Field: Tableau Dashboard of Middle Bakken Wells"
 date: 2020-05-22
 tags: [oil, Bakken, Tableau, dashboard]
 header:
@@ -12,7 +12,7 @@ mathjax: "true"
 
 This is a dashboard I built in Tableau using a dataset downloaded from the North Dakota Oil and Gas Division website (https://www.dmr.nd.gov/oilgas/).
 
-Select an operator and/or a range of completion dates to see the filtered wells and their respective cumulative oil production in the map view.
+The Middle Bakken is the name of the stratigraphic interval targeted by all of the oil and gas wells shown in this dashboard.  The map shows the cumulative oil production for each Middle Bakken well, represented by a colored marker located at each well's surface location. Select an operator and/or a range of completion dates to see the filtered wells and their respective cumulative oil production in the map view.
 
 Please feel free to contact me with any suggestions to make this better!
  
