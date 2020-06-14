@@ -3011,7 +3011,7 @@ plt.ylabel('Percent of Total Background Checks');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_71_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_71_0.png)
 
 
 ### Time variation of long gun background checks
@@ -3032,7 +3032,7 @@ plt.ylabel('Total Checks');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_73_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_73_0.png)
 
 
 This dataset contains obvious cyclicity that appears to repeat every year, with an overall trend obscured somewhat by the cyclicity.  It would be nice to smooth out the annual cyclicity and see the overall trend. First let's try to see what an average year looks like by grouping all the common months together and calculating an average by month.  First I will need to separate the month from the year in a new column I will call 'month_only'.
@@ -3117,7 +3117,7 @@ plt.ylabel('Average Monthly Background Checks');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_77_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_77_0.png)
 
 
 So now we can see that in a typical year, the long gun sales reach a minimum around June and a maximum in December.
@@ -3135,7 +3135,7 @@ plt.ylabel('Total Monthly Background Checks, 12 mo. Moving Avg');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_79_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_79_0.png)
 
 
 Now the spike in sales in 2012 appears much more dramatic!  We can also see that the overall trend has been increasing since 2003 until the end of the dataset in 2017.
@@ -3203,7 +3203,7 @@ plt.vlines(169, ymin=0, ymax=1300000, linestyles='dashed');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_84_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_84_0.png)
 
 
 ### Demographic characteristics of states with high numbers of long gun background checks
@@ -3585,7 +3585,7 @@ plt.ylabel('Frequency');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_91_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_91_0.png)
 
 
 The distribution for Pennsylvania is bimodal and somewhat right-skewed.  Now let's look at Texas, California, and Florida:
@@ -3599,7 +3599,7 @@ plt.ylabel('Frequency');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_93_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_93_0.png)
 
 
 
@@ -3611,7 +3611,7 @@ plt.ylabel('Frequency');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_94_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_94_0.png)
 
 
 
@@ -3623,7 +3623,7 @@ plt.ylabel('Frequency');
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_95_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_95_0.png)
 
 
 These states also have right-skewed distributions, suggesting we should consider using the medians for comparison rather than the means.  In the next code cell, I will make a new dataframe of the long gun NICS data, grouped by state, and with the median value of long gun background checks calculated and added as a column.
@@ -3903,7 +3903,7 @@ census_longgun_mrg['longgun_med_percap_thou'].hist()
 
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_103_1.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_103_1.png)
 
 
 Quite a bimodal distribution!  First let's see what states have the highest per capita number of long gun background checks:
@@ -4112,35 +4112,35 @@ for feat in feat_list:
 ```
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_0.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_0.png)
 
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_1.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_1.png)
 
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_2.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_2.png)
 
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_3.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_3.png)
 
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_4.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_4.png)
 
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_5.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_5.png)
 
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_6.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_6.png)
 
 
 
-![png](images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_7.png)
+![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_7.png)
 
 
 The feature with the highest absolute value of correlation coefficient is 'pc_foreign_born_2011_2015' which represents the percentage of people in the state born in a foreign country.  This statistic is inversely correlated with long gun background checks, such that states with few foreign-born people tend to have more _per capita_ long gun background checks. This is not obvious, but it could be that foreign-born Americans tend to live more on the coasts and in urban areas where hunting is not as popular.
