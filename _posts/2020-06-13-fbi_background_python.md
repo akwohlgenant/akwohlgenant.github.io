@@ -8,8 +8,6 @@ excerpt: "This project will investigate a dataset derived from the National Inst
 mathjax: "true"
 ---
 
-## Investigate FBI National Instant Criminal Background Check System (NICS)
-
 ### Table of Contents
 <ul>
 <li><a href="#intro">Introduction</a></li>
@@ -21,9 +19,13 @@ mathjax: "true"
 <a id='intro'></a>
 ## Introduction
 
-This project will investigate a dataset derived from the National Instant Background Check System (NICS) developed by the United States Federal Bureau of Investigation (FBI) as a means to prevent firearms from falling into the wrong hands.  Here's how it works: when someone tries to buy a firearm in the United States, the seller contacts NICS, either through the internet or by telephone.  The seller submits a form filled out by the prospective buyer, and the system checks to see if the buyer has a criminal record or is otherwise ineligible to purchase a firearm. More details on the NICS system can be found on the FBI website (https://www.fbi.gov/services/cjis/nics).
+This project will investigate a dataset derived from the National Instant Background Check System (NICS) developed by the United States Federal Bureau of Investigation (FBI) as a means to prevent firearms from falling into the wrong hands.  Here's how it works: when someone tries to buy a firearm in the United States, the seller contacts NICS, either through the internet or by telephone.  The seller submits a form filled out by the prospective buyer, and the system checks to see if the buyer has a criminal record or is otherwise ineligible to purchase a firearm. More details on the NICS system can be found on the FBI website:
 
-The data that will be utilized for this project was originally published by the FBI in PDF form as a report.  It was later extracted by a third party using code to parse the data and convert it to comma separated values (CSV) format.  Details of the data extraction can be found at: https://github.com/BuzzFeedNews/nics-firearm-background-checks/blob/master/README.md.
+ (<https://www.fbi.gov/services/cjis/nics>)
+
+The data that will be utilized for this project was originally published by the FBI in PDF form as a report.  It was later extracted by a third party using code to parse the data and convert it to comma separated values (CSV) format.  Details of the data extraction can be found at: 
+
+(<https://github.com/BuzzFeedNews/nics-firearm-background-checks/blob/master/README.md>)
 
 The dataset contains tabulations by month from 1998 until 2017 for all U.S. states and territories of background checks performed for several categories of firearm, including:
 
@@ -3407,7 +3409,7 @@ len(census_new.columns.values)
 
 
 
-Wow, 65 features!  That's too many to look through one by one, so let's use some of the handy built-in functionality of pandas to find features that appear to correlate to our variable of interest: long gun background checks.  First, let's summarize the long gun background checks into summary statistics by state, and list the top 10 states, this time by mean number of monthly long gun background checks.
+Wow, 63 features!  That's too many to look through one by one, so let's use some of the handy built-in functionality of pandas to find features that appear to correlate to our variable of interest: long gun background checks.  First, let's summarize the long gun background checks into summary statistics by state, and list the top 10 states, this time by mean number of monthly long gun background checks.
 
 
 ```python
@@ -4143,11 +4145,11 @@ for feat in feat_list:
 ![png](/images/2020_06_13_fbi_background_python/AndroWohlgenant_Investigate_a_Dataset_10June2020_110_7.png)
 
 
-The feature with the highest absolute value of correlation coefficient is 'pc_foreign_born_2011_2015' which represents the percentage of people in the state born in a foreign country.  This statistic is inversely correlated with long gun background checks, such that states with few foreign-born people tend to have more _per capita_ long gun background checks. This is not obvious, but it could be that foreign-born Americans tend to live more on the coasts and in urban areas where hunting is not as popular.
+The feature with the highest absolute value of correlation coefficient is 'pc_foreign_born_2011_2015' which represents the percentage of people in the state born in a foreign country.  This statistic is inversely correlated with long gun background checks, such that states with few foreign-born people tend to have more per capita long gun background checks. This is not obvious, but it could be that foreign-born Americans tend to live more on the coasts and in urban areas where hunting is not as popular.
 
-To me, the features that make the most intuitive sense as being related to long gun sales are the _'mean_travel_to_work_min_2011_2015'_ and _'pop_per_sqmi_2010'_ features, which are both inversely correlated to the target variable.  Highly rural states tend to have very short commute times and low population densities, and also are states where hunting is very popular, and therefore, where I would expect to see a large number of people trying to purchase hunting rifles and shotguns.
+To me, the features that make the most intuitive sense as being related to long gun sales are the 'mean_travel_to_work_min_2011_2015' and 'pop_per_sqmi_2010' features, which are both inversely correlated to the target variable.  Highly rural states tend to have very short commute times and low population densities, and also are states where hunting is very popular, and therefore, where I would expect to see a large number of people trying to purchase hunting rifles and shotguns.
 
-I am surprised _land area_ wasn't better correlated to long gun background checks, although California has both large land area and large population, so perhaps it isn't so surprising.
+I am surprised land area wasn't better correlated to long gun background checks, although California has both large land area and large population, so perhaps it isn't so surprising.
 
 
 ```python
@@ -4199,10 +4201,3 @@ The exploration and analysis of the NICS and U.S. Census data provided insights 
 The overall trend of long gun background checks has been increasing since 2003 until the last year in the dataset, 2017.  There is marked annual cyclicity in the time data, such that background check hit a peak in December every year, and then drop to a minimum in the early summer months.  This is probably driven by a combination of factors:  1) most hunting seasons are in the late fall and winter, and 2) guns may be purchased as Christmas gifts.  After smoothing the cyclical data using a 12-month moving average, it became apparent that the overall trend is increasing, and there was a dramatic spike in gun purchases in December 2012, probably related to the election of Barack Obama to his second presidential term.
 
 The NICS data were combined with the U.S. Census data to look for correlations between long gun background checks and demographic data.  The strongest correlations tended to be inverse correlations between factors related to the population density and also to the percentage of foreign-born people, which may indirectly be a function of population density and distance from major urban areas.  While correlations were found, it is important to note that any relationships noted are merely associations; no rigorous statistical analyses were performed, and no causality can be inferred.
-
-
-
-```python
-#from subprocess import call
-#all(['python', '-m', 'nbconvert', 'Investigate_a_Dataset.ipynb'])
-```
