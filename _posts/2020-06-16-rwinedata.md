@@ -1,7 +1,7 @@
 ---
-title: "Wine Data: Exploratory Analysis in R"
+title: "Wine Review Data: Exploratory Analysis in R"
 date: 2020-06-16
-tags: [k-means, clustering, unsupervised learning, well log]
+tags: [exploratory data analysis, R, wine, word cloud]
 header:
  image: "/images/elle_hughes_wine_pic.jpg"
 excerpt: "The aim of this analysis was to investigate a dataset consisting of
