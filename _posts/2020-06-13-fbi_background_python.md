@@ -19,7 +19,7 @@ mathjax: "true"
 <a id='intro'></a>
 ## Introduction
 
-This project will investigate a dataset derived from the National Instant Background Check System (NICS) developed by the United States Federal Bureau of Investigation (FBI) as a means to prevent firearms from falling into the wrong hands.  Here's how it works: when someone tries to buy a firearm in the United States, the seller contacts NICS, either through the internet or by telephone.  The seller submits a form filled out by the prospective buyer, and the system checks to see if the buyer has a criminal record or is otherwise ineligible to purchase a firearm. More details on the NICS system can be found on the FBI website:
+This project will use Python and several of its associated libraries in  a Jupyter Notebook to investigate a dataset derived from the National Instant Background Check System (NICS).  The NICS is a system developed by the United States Federal Bureau of Investigation (FBI) as a means to prevent firearms from falling into the wrong hands.  Here's how it works: when someone tries to buy a firearm in the United States, the seller contacts NICS, either through the internet or by telephone.  The seller submits a form filled out by the prospective buyer, and the system checks to see if the buyer has a criminal record or is otherwise ineligible to purchase a firearm. More details on the NICS system can be found on the FBI website:
 
  (<https://www.fbi.gov/services/cjis/nics>)
 
@@ -44,7 +44,7 @@ This project will focus on a single firearm category: **long gun**, with the num
 
 It is important to note that there is **not** a one-to-one correlation between background checks and sales of guns, for a variety of reasons including varying state laws.  While background checks are a good indicator of gun sales, the numbers of background checks does not necessarily equal the number of guns sold for a particular category or state.
 
-In the code cell below, the appropriate libraries will be imported, followed by sections on **Data Wrangling**, **Exploratory Data Analysis**, and finally a section containing **Conclusions** based on the analysis.
+As mentioned earlier, this analysis is performed using the Python language and several useful open-source libraries for data analysis and visualization, including _pandas_ and _matplotlib_ to name just two.  In the code cell below, the appropriate libraries will be imported, followed by sections on **Data Wrangling**, **Exploratory Data Analysis**, and finally a section containing **Conclusions** based on the analysis.
 
 
 ```python
