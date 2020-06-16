@@ -1,10 +1,11 @@
 ---
 title: "Wine Data: Exploratory Analysis in R"
-date: 2020-05-03
+date: 2020-06-16
 tags: [k-means, clustering, unsupervised learning, well log]
 header:
  image: "/images/elle_hughes_wine_pic.jpg"
-excerpt: "Exploratory analysis of Wine Spectator dataset in R"
+excerpt: "The aim of this analysis was to investigate a dataset consisting of
+nearly 130,000 wine reviews"
 mathjax: "true"
 ---
 
@@ -17,7 +18,6 @@ of regions in countries ranging from Armenia to Uruguay, with a dizzying
 array of naming conventions that can be downright confusing. And I, like
 many people, am interested in learning more about wines, maybe in the
 hope of finding a cheap, underrated bargain at my local liquor store.
-
 Luckily, there are myriad magazines and websites devoted entirely to the
 discussion, reviewing, and rating of wines. One of the most popular of
 such magazines and websites is *Wine Enthusiast*.
@@ -32,9 +32,7 @@ both useful and not so useful. Information found in a given review
 includes: the country and region of origin, the name of the vintner or
 winery, the variety (e.g. Pinot Noir), the price (arguably the most
 important feature), the name of the reviewer, and even the reviewer’s
-*Twitter* handle.
-
-In addition to descriptive information, each review
+*Twitter* handle. In addition to descriptive information, each review
 contains a rating or “points” awarded to the wine based on a variety of
 categories. The ratings are purported to be on a 100-point scale,
 although in reality it is just a 20-point scale from 80 to 100 points.
@@ -78,8 +76,7 @@ from the *Wine Enthusiast* website in 2017 and posted on *Kaggle*
     distribution, or is it more heavily skewed toward lower priced
     wines?
 
-  - What about the distribution of ratings or “points”? How are they
-    distributed?
+  - What about the distribution of wine ratings (“points”)?
 
   - Is there any relationship between price of wine and its
     corresponding rating in points? Are higher priced wines rated higher
@@ -94,7 +91,7 @@ statistical and graphical techniques using R.
 ### Data
 
 As mentioned previously, the dataset for this research consists of a
-comma separated file downloaded from *Kaggle*, and comprising nearly
+comma separated file downloaded from *Kaggle*, and comprises nearly
 130,000 wine reviews that were scraped from the *Wine Enthusiast*
 website (www.winemag.com) in 2017. The data contain 14 variables:
 
@@ -127,9 +124,8 @@ include:
   - Plotting histograms of wine price and points.
   - Binning wines into price range bins (e.g. $10-$20, $20-$30, etc.)
     and visualizing price distribution
-  - Visualizing wine ratings as a function of price bins; addressing
-    question of whether there is a relationship between price and rating
-    points.
+  - Visualizing wine ratings and price bins as a way of addressing
+    whether there is a relationship between price and rating points.
   - Using word frequency counting and word cloud to visualize the
     frequency of words used in wine descriptions.
 
@@ -140,6 +136,9 @@ First, the necessary packages are included for the analysis.
 ``` r
 library(dplyr) # for a variety of analysis functions
 library(ggplot2) # for plotting
+```
+
+``` r
 # the packages below are included to aid in construction of the word cloud, among other functions
 library(tm) 
 library(SnowballC)
@@ -181,21 +180,21 @@ colnames(wine)
     ## [10] "taster_name"           "taster_twitter_handle" "title"                
     ## [13] "variety"               "winery"
 
-Let’s see what a “description” looks like for a randomly chosen wine in
-the
+Most of the variable names are pretty self-explanatory. Let’s see what a
+“description” looks like for a randomly chosen wine in the
     dataset:
 
 ``` r
 wine$description[sample(1:129971, 1)]
 ```
 
-    ## [1] Made from grapes sourced from Domaines Devillard's 12 acres of premier cru Mercurey vineyards, this rich, weighty wine has ripe red fruits that are layered with new wood and tannins. A structured effort that's meant to age for five years and more.
+    ## [1] The Claret benefits from an additional year of bottle age, integrating the components (60% Merlot, 30% Cabernet Sauvignon and 5% each Cab Franc and Malbec). Tart red-berry fruit is accented with light toast from barrel aging. There's a slight hint of burnt rubber that will blow off with decanting.
     ## 119955 Levels: "Chremisa," the ancient name of Krems, is commemorated in this wine that comes from Krems vineyards. It has tight, tangy apple-driven acidity, with a bright, light, citrusy character. Not for aging. ...
 
 This description is full of interesting adjectives and imagery meant to
 elicit in the reader a sense of the appearance, aroma, and flavor of the
-wine. Later, the words used will be more thoroughly investigated and
-visualized.
+wine. Later, the words used in the description variable will be more
+thoroughly investigated and visualized.
 
 Now the countries of origin will be investigated. What are the unique
 countries in this dataset?
@@ -208,55 +207,67 @@ length(countries)
     ## [1] 44
 
 So 44 unique countries are represented in the dataset. Let’s get a
-listing of these countries, and summarise them by their respective
-counts in the dataset:
+listing of these countries, and rank them by number of reviews and
+relative proportion of the dataset. I will also calculate a running
+total of the proportions.
 
 ``` r
 wine_country <- wine %>%
+  filter(!is.na(country)) %>%
   group_by(country) %>%
-  summarise(Count=n()) %>%
-  arrange(-Count)
+  summarise(Count=n(), Prop=round(n()/(length(wine$country)), 4)) %>%
+  arrange(-Count) %>%
+  mutate(Cum_Prop = cumsum(Prop))
 wine_country
 ```
 
-    ## # A tibble: 44 x 2
-    ##    country   Count
-    ##    <fct>     <int>
-    ##  1 US        54504
-    ##  2 France    22093
-    ##  3 Italy     19540
-    ##  4 Spain      6645
-    ##  5 Portugal   5691
-    ##  6 Chile      4472
-    ##  7 Argentina  3800
-    ##  8 Austria    3345
-    ##  9 Australia  2329
-    ## 10 Germany    2165
+    ## # A tibble: 44 x 4
+    ##    country   Count   Prop Cum_Prop
+    ##    <fct>     <int>  <dbl>    <dbl>
+    ##  1 US        54504 0.419     0.419
+    ##  2 France    22093 0.17      0.589
+    ##  3 Italy     19540 0.150     0.740
+    ##  4 Spain      6645 0.0511    0.791
+    ##  5 Portugal   5691 0.0438    0.835
+    ##  6 Chile      4472 0.0344    0.869
+    ##  7 Argentina  3800 0.0292    0.898
+    ##  8 Austria    3345 0.0257    0.924
+    ##  9 Australia  2329 0.0179    0.942
+    ## 10 Germany    2165 0.0167    0.958
     ## # ... with 34 more rows
 
-The United States, France, and Italy are the countries of origin of the
-bulk of the wines reviewed. A substantial number of countries have very
-few wines reviewed. So I am going to filter out the countries with few
-reviews before plotting.
+As we can see above in the Cum\_Prop (cumulative proportion or running
+total of the proportions) column, the top 10 countries in terms of
+number of reviews account for 96% of the observations in the dataset, so
+I am going to filter out the countries with very few reviews before any
+plotting.
 
 ``` r
 wine_country <- wine_country %>%
-  filter(Count>50)
+  filter(Prop>0.0005)
 ```
 
-Below is a visualization of the distribution of wines by country after
+Below is a bar plot of review count by country after
 filtering.
 
 ``` r
 ggplot(data=wine_country, aes(x=reorder(country, -Count), y=Count)) + geom_bar(stat='identity', fill='dodgerblue') + labs(title="Wine Review Counts by Country",x="Country", y = "Count") + theme(axis.text.x=element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 ```
 
-![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-9-1.png)<!-- -->
+![[png]](/images/2020-05-03-rwinedata_images/unnamed-chunk-10-1.png)<!-- -->
 
-As we can see, the top three countries make up the bulk of the wines,
-and the counts tail off rapidly in the rest of the countries
-represented, such that many of the countries are difficult to see on the
-plot because their numbers are so low in comparison.
+And here’s a line plot of the cumulative sum of country
+proportions:
+
+``` r
+ggplot(data=wine_country, aes(x=Cum_Prop, y=(reorder(country, -Cum_Prop)), group=1)) + geom_line(linetype='dashed') + geom_point() + labs(title='Cumulative Sum of Wine Review Proportion by Country', x="Cumulative Proportion", y="Country")
+```
+
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-11-1.png)<!-- -->
+
+As we can see, the top few countries make up the bulk of the wine
+reviews in the dataset, and the counts tail off rapidly in the rest of
+the countries represented..
 
 Next, a similar analysis is performed with wine varieties:
 
@@ -284,7 +295,7 @@ wine_varieties <- wine %>%
 ggplot(data=wine_varieties, aes(x=reorder(variety, -count), y=count)) + geom_bar(stat='identity', fill='dodgerblue') + labs(title="Wine Review Counts by Variety",x="Variety", y = "Count") + theme(axis.text.x=element_text(angle=90, hjust=1), plot.title = element_text(hjust = 0.5))
 ```
 
-![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-12-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-14-1.png)<!-- -->
 
 As we can see above, the four most reviewed wines are Pinot Noir,
 Chardonnay, Cabernet Sauvignon, and Red Blend. This distribution is not
@@ -304,28 +315,48 @@ mod_price <- wine %>%
 ggplot(data=mod_price, aes(mod_price$price)) + geom_histogram(binwidth = 10, color='black', fill='dodgerblue') + labs(title="Histogram of Wine Prices",x="Price, USD", y = "Count") + theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-14-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-16-1.png)<!-- -->
 
 Here it apparent that the prices are highly concentrated in the low
-range, with a long tail extending out into the higher prices
-(right-skewed). We will do more thorough investigation of this
-observation.
+range (less than $50), with a long tail extending out into the higher
+prices. We will do more thorough investigation of this observation.
+Let’s take a look at summary statistics for the wine prices.
 
 ``` r
-summary(mod_price$price)
+summary(wine$price)
 ```
 
-    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##    4.00   17.00   25.00   34.69   42.00  499.00
+    ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA's 
+    ##    4.00   17.00   25.00   35.36   42.00 3300.00    8996
 
-Now a histogram of the wine ratings represented by the variable
+As we can see from the summary statistics, the median wine price is only
+25 US dollars, while the average is more than 35 bucks, dragged higher
+by those few, very expensive wines, up to a maximum of 3,300 dollars.
+There are also almost 9,000 null values in the price variable.
+
+Let’s get rid of those observations with null in the price variable
+before continuing our analysis.
+
+``` r
+wine <- wine %>%
+  filter(!is.na(price))
+dim(wine)
+```
+
+    ## [1] 120975     14
+
+That drops our dataset down to just under 121,000 observations; still
+plenty of data to work with.
+
+Now lets look at the distribution of the wine ratings represented by the
+variable
 *points*:
 
 ``` r
 ggplot(wine, aes(wine$points)) + geom_histogram(binwidth = 1, color='black', fill='dodgerblue') + labs(title="Histogram of Wine Points",x="Points", y = "Count") + theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-16-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-19-1.png)<!-- -->
 
 ``` r
 # the 'hjust' is added to center the title, otherwise left-justified
@@ -339,10 +370,98 @@ summary(wine$points)
 ```
 
     ##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    ##   80.00   86.00   88.00   88.45   91.00  100.00
+    ##   80.00   86.00   88.00   88.42   91.00  100.00
 
 In this near-normal distribution, the mean and median are very close to
-one another at 88 and 88.45 points, respectively.
+one another at 88 and 88.42 points, respectively.
+
+As an aside, let’s see cheap Australian Rieslings with ratings of at
+least 90 points:
+
+``` r
+wine %>%
+  filter(country=="Australia", variety=="Riesling", points>90, price<20) %>%
+  select(title, price, points) %>%
+  arrange(price)
+```
+
+    ##                                                                      title
+    ## 1  Thorn Clarke 2012 Mount Crawford Single Vineyard Riesling (Eden Valley)
+    ## 2                                   St Hallett 2014 Riesling (Eden Valley)
+    ## 3       D'Arenberg 2015 The Dry Dam Riesling (McLaren Vale-Adelaide Hills)
+    ## 4                             Robert Oatley 2012 Riesling (Great Southern)
+    ## 5                                   Wakefield 2011 Riesling (Clare Valley)
+    ## 6                      Thorn Clarke 2014 Eden Trail Riesling (Eden Valley)
+    ## 7                Jim Barry 2014 The Lodge Hill Dry Riesling (Clare Valley)
+    ## 8                           Hewitson 2015 Gun Metal Riesling (Eden Valley)
+    ## 9                Jim Barry 2016 The Lodge Hill Dry Riesling (Clare Valley)
+    ## 10              D'Arenberg 2008 The Noble Wrinkled Riesling (McLaren Vale)
+    ##    price points
+    ## 1     15     91
+    ## 2     16     91
+    ## 3     17     92
+    ## 4     17     91
+    ## 5     17     91
+    ## 6     18     92
+    ## 7     18     91
+    ## 8     19     91
+    ## 9     19     91
+    ## 10    19     94
+
+And let’s see Sauvignon Blancs with points greater than, say, 92 and
+price less than 30 dollars:
+
+``` r
+wine %>%
+  filter(variety=='Sauvignon Blanc', points>92, price<30) %>%
+  select (title, price, points) %>%
+  arrange(price)
+```
+
+    ##                                                                                   title
+    ## 1  Dutton Estate 2006 Dutton Ranch Kylie's Cuvée Sauvignon Blanc (Russian River Valley)
+    ## 2                    Patianna 2009 Made With Organic Grapes Sauvignon Blanc (Mendocino)
+    ## 3                  Easton 2009 Monarch Mine Vineyard Sauvignon Blanc (Sierra Foothills)
+    ## 4                                    Navarro 2009 Cuvee 128 Sauvignon Blanc (Mendocino)
+    ## 5                     Gainey 2014 Limited Selection Sauvignon Blanc (Santa Ynez Valley)
+    ## 6                                    Guardian 2012 Angel Sauvignon Blanc (Red Mountain)
+    ## 7                                Kenwood 2015 Six Ridges Sauvignon Blanc (Sonoma Coast)
+    ## 8                  Efeste 2012 Boushey Vineyard Sauvage Sauvignon Blanc (Yakima Valley)
+    ## 9                                      Domaine Fouassier 2008 Les Chailloux  (Sancerre)
+    ## 10                                        Michel Vattan 2015 Cuvée Calcaire  (Sancerre)
+    ## 11                  Joseph Jewell 2008 Redwood Ranch Sauvignon Blanc (Alexander Valley)
+    ## 12                         Kenefick Ranch 2015 Estate Grown Sauvignon Blanc (Calistoga)
+    ## 13                                        Clos Henri 2015 Sauvignon Blanc (Marlborough)
+    ## 14                                                  Pierre Morin 2014 Ovide  (Sancerre)
+    ## 15                Woodward Canyon 2009 Estate Sauvignon Blanc (Walla Walla Valley (WA))
+    ## 16                                          Duckhorn 2010 Sauvignon Blanc (Napa Valley)
+    ## 17                                           Conspire 2009 Sauvignon Blanc (Rutherford)
+    ## 18                               MacLaren 2014 Lee's Sauvignon Blanc (Dry Creek Valley)
+    ## 19                                           Conspire 2009 Sauvignon Blanc (Rutherford)
+    ## 20                                           Jean-Max Roger 2014 Cuvée C.M.  (Sancerre)
+    ##    price points
+    ## 1     17     93
+    ## 2     17     93
+    ## 3     18     93
+    ## 4     18     93
+    ## 5     19     93
+    ## 6     20     94
+    ## 7     22     93
+    ## 8     23     93
+    ## 9     23     93
+    ## 10    24     93
+    ## 11    24     93
+    ## 12    24     93
+    ## 13    25     93
+    ## 14    25     93
+    ## 15    26     93
+    ## 16    27     93
+    ## 17    28     93
+    ## 18    28     93
+    ## 19    28     93
+    ## 20    28     93
+
+I’ll be checking my local wine store for some of these bargains\!
 
 We will now do a more thorough investigation of wine prices and compare
 them with the wine ratings to see if a relationship exists between the
@@ -370,11 +489,11 @@ summary(price_bins)
 
     ##   $0-10  $10-20  $20-30  $30-40  $40-50  $50-60  $60-70  $70-80  $80-90 $90-100 
     ##    2841   36560   29103   17299   12064    7593    5111    3163    1898    1392 
-    ##   >$100    NA's 
-    ##    3951    8996
+    ##   >$100 
+    ##    3951
 
 Above it is apparent that the largest bin of prices is the $10-$20 bin,
-which containis 36,560 observations. We can visualize this distribution
+which contains 36,560 observations. We can visualize this distribution
 better with a bar
 graph:
 
@@ -385,15 +504,17 @@ ggplot(data=as_tibble(price_bins), mapping=aes(x=value)) + geom_bar(fill="dodger
     ## Warning: Calling `as_tibble()` on a vector is discouraged, because the behavior is likely to change in the future. Use `tibble::enframe(name = NULL)` instead.
     ## This warning is displayed once per session.
 
-![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-20-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-25-1.png)<!-- -->
 
 Next, we can use these price bins as a way to compare with wine points
 and investigate the question of whether a relationship exists between
-price and points. To do this we can create a new column called
-price\_bin:
+price and points. To do this we will first select just those columns,
+and then create a new column called ‘price\_bin’ that will be assigned
+one of our previously defined bin tags depending on the price of the
+wine:
 
 ``` r
-wine_pp <- wine %>% select(price, points) %>% filter(!is.na(price))
+wine_pp <- wine %>% select(price, points)
 wb_group <- as_tibble(wine_pp) %>%
   mutate(price_bin = case_when(
     price < 10 ~ tags[1],
@@ -410,29 +531,48 @@ wb_group <- as_tibble(wine_pp) %>%
   ))
 ```
 
-Now we can visualize the wine rating (points) versus price by plotting
-box plots of points for each price
-bin:
+Let’s see what that new column looks like:
+
+``` r
+head(wb_group)
+```
+
+    ## # A tibble: 6 x 3
+    ##   price points price_bin
+    ##   <dbl>  <int> <chr>    
+    ## 1    15     87 $10-20   
+    ## 2    14     87 $10-20   
+    ## 3    13     87 $10-20   
+    ## 4    65     87 $60-70   
+    ## 5    15     87 $10-20   
+    ## 6    16     87 $10-20
+
+Now let’s look at the distribution of wine ratings for each price bin
+with box plots (often called ‘box-and-whisker’ plots) for each bin. I
+will also post the individual data points and ‘jitter’ them (shift them
+a small, random distance laterally) so that we can get a visual feel for
+the quantity and distribution of price points for each
+bin.
 
 ``` r
 ggplot(data=wb_group, mapping = aes(x=price_bin, y=points)) + geom_jitter(color='dodgerblue', alpha=0.1) + 
   geom_boxplot(fill='bisque', color='black', alpha=0.3) + theme_minimal()+ labs(title="Boxplots of Wine Price Bins",x="Wine Price Bins, USD", y = "Points") + theme(plot.title = element_text(hjust = 0.5))
 ```
 
-![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-22-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-28-1.png)<!-- -->
 
-We can see from this visualization not only the spread in the underlying
-price data for each bin, but also the progression of the median points
-for each price bin. It is apparent from this plot that overall there is
-an increase in rating points associated with an increase in price. This
-effect is more dramatic in the lower price bins from zero to 50 dollars,
-and the effect is flattened with higher prices, such that the median
-rating for a 90-100 dollar wine is not significantly higher than that
-for a 70-80 dollar wine.
+We can see from this plot not only the spread in the underlying ratings
+data for each price bin, but also the price-progression of the median
+ratings for all bins. It is apparent that overall there is an increase
+in rating points associated with an increase in price. This effect is
+more dramatic in the lower price bins from zero to 50 dollars, and the
+effect is flattened with higher prices, such that the median rating for
+a 90-100 dollar wine is not significantly different than that for a
+70-80 dollar wine.
 
-This raises an interesting causal question: are the more expensive wines
-rated higher because they are better? Or are the tasters biased by their
-own knowledge of the wine’s price, and therefore more likely to rate the
+This raises an interesting question: are the more expensive wines rated
+higher because they are better? Or are the tasters biased by their own
+knowledge of the wine’s price, and therefore more likely to rate the
 wine higher if it is more expensive? This question can not be answered
 from these data, but the relationship could be further investigated
 using a dataset of blind tastings where the tasters are ignorant of the
@@ -472,8 +612,12 @@ wine_corpus =  tm_map(wine_corpus, stripWhitespace)
 ``` r
 inspect(wine_corpus[846])
 ```
-  
-    ## [1] fragrant fresh grillo opens alluring scents of acacia flower beeswax white stone fruit succulent palate creamy white peach juicy nectarine almond mineral framed in tangy acidity a note of chopped herb closes lingering finish
+
+    ## <<SimpleCorpus>>
+    ## Metadata:  corpus specific: 1, document level (indexed): 0
+    ## Content:  documents: 1
+    ## 
+    ## [1] dusty tight a whiff of coffee cocoa introducing an elegant interesting streaks of metal graphite young fruit fine tannins in perfect balance a lovely delicacy
 
 An inspection above the description for element number 846 in the corpus
 shows that the unnecessary features were removed.
@@ -491,7 +635,7 @@ Let’s check out the dimensions of the document-term matrix:
 dim(wine_dtm)
 ```
 
-    ## [1] 129971    454
+    ## [1] 120975    461
 
 Then create and sort a dataframe of the sums for each column of the
 document-term
@@ -503,16 +647,16 @@ head(freq, 10)
 ```
 
     ##         freqs
-    ## fruit   45012
-    ## aromas  39613
-    ## palate  38083
-    ## acidity 34958
-    ## finish  34943
-    ## tannins 30854
-    ## drink   29958
-    ## cherry  27380
-    ## ripe    26989
-    ## black   25388
+    ## fruit   41565
+    ## aromas  37479
+    ## palate  36378
+    ## finish  33669
+    ## acidity 31501
+    ## tannins 28104
+    ## drink   27621
+    ## cherry  25974
+    ## ripe    24233
+    ## black   23778
 
 And finally, generate the word cloud from the frequency
 dataframe.
@@ -521,14 +665,16 @@ dataframe.
 wordcloud(rownames(freq), freq[,1], max.words=50, colors=brewer.pal(1, "Dark2"))
 ```
 
-    ## Warning in brewer.pal(1, "Dark2"): minimal value for n is 3, returning requested palette with 3 different levels
-
-![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-30-1.png)<!-- -->
+![png](/images/2020-05-03-rwinedata_images/unnamed-chunk-36-1.png)<!-- -->
 
 The word cloud above is limited to 50 words, but gives a good idea of
-the kinds of words that are frequently used in the wine descriptions in
-the dataset. Additional work coud be performed here to remove additional
-words that don’t yield much insight, such as “now”.
+the kinds of words that are frequently used in the wine descriptions.
+While additional fine-tuning might yield more insights (for instance, I
+could get rid of words like “some” that aren’t telling us much), it
+might be more interesting to divide the wines up by variety and see how
+the word frequencies differ. It may even be possible to use the words
+from the descriptions to predict the variety of wine. I will save that
+question for the next project.
 
 ### Conclusions
 
@@ -547,13 +693,19 @@ posed:
     range, with a long tail exending up in price to a maximum price of
     $3,300.
 
-  - The wine ratings or “points” were near normally distributed, with a
-    median value of 88 points.
+  - The wine ratings or “points” were near normally distributed, with
+    mean and median values of approximately 88 points.
 
   - There was a relationship noted between price and points, such that
     an increase in price is associated with an increase in awarded
     points. This effect was more dramatic in the lower price bins
-    (0-$50) than in the higher price range.
+    (0-$50) than in the higher price range, where increase in price more
+    than about 70 dollars did not appear to be associated with
+    significantly higher ratings.
 
   - And finally, the most frequently used words in the wine desription
-    column were calculated and visualized using a word cloud.
+    column were calculated and visualized using a word cloud. This
+    provided an interesting way of visualizing the most common words in
+    the descriptions, but to really leverage the description text, we
+    might want to take things a bit further and try to use the language
+    to predict something like the wine variety.
