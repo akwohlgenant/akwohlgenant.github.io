@@ -15,8 +15,9 @@ I like wine. Lots of people like wine. I tend to drink the same wines
 over and over again, from an embarrassingly small list of varieties and
 regions. But there are hundreds of varieties of wine produced in dozens
 of regions in countries ranging from Armenia to Uruguay, with a dizzying
-array of naming conventions that can be downright confusing. And I, like
-many people, am interested in learning more about wines, maybe in the
+array of naming conventions that can be downright confusing.
+
+Like many people, I am interested in learning more about wines, maybe in the
 hope of finding a cheap, underrated bargain at my local liquor store.
 Luckily, there are myriad magazines and websites devoted entirely to the
 discussion, reviewing, and rating of wines. One of the most popular of
@@ -32,7 +33,9 @@ both useful and not so useful. Information found in a given review
 includes: the country and region of origin, the name of the vintner or
 winery, the variety (e.g. Pinot Noir), the price (arguably the most
 important feature), the name of the reviewer, and even the reviewer’s
-*Twitter* handle. In addition to descriptive information, each review
+*Twitter* handle.
+
+In addition to descriptive information, each review
 contains a rating or “points” awarded to the wine based on a variety of
 categories. The ratings are purported to be on a 100-point scale,
 although in reality it is just a 20-point scale from 80 to 100 points.
