@@ -4,7 +4,7 @@ date: 2020-07-08
 tags: [k-means, clustering, unsupervised learning, well log, geophysical, python]
 header:
  image: "/images/zbynek-burival-GrmwVnVSSdU-unsplash.jpg"
-excerpt: "K-means clustering of geological well log data"
+excerpt: "This notebook will illustrate an application of the **k-means clustering** machine learning algorithm to geological and geophysical analyses in the oil and gas industry."
 mathjax: "true"
 ---
 
