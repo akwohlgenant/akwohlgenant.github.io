@@ -500,7 +500,7 @@ make_log_plot(data_df[data_df['Well Name'] == 'SHRIMPLIN'])
 ```
 
 
-![png](/images/2020-07-08-kmeans-welllog-python/AndyWohlgenant_Final_Project_18Mar2020-Copy2_19_0.png)
+![png](/images/2020-07-08-kmeans-welllog-python/AndyWohlgenant_Final_Project_18Mar2020-Copy2_19_0.png)<!-- -->
 
 
 Next I will plot histograms of the different features to inspect the distributions.
