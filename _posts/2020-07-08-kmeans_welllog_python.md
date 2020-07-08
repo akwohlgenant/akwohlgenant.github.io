@@ -513,11 +513,6 @@ data_df.drop(['Facies','Formation','Well Name','NM_M','RELPOS'], axis=1).hist(ax
 plt.show();
 ```
 
-    C:\Users\akwoh\Anaconda3\lib\site-packages\ipykernel_launcher.py:3: UserWarning: To output multiple subplots, the figure containing the passed axes is being cleared
-      This is separate from the ipykernel package so we can avoid doing imports until
-    
-
-
 ![png](/images/2020-07-08-kmeans-welllog-python/AndyWohlgenant_Final_Project_18Mar2020-Copy2_21_1.png)
 
 
@@ -535,12 +530,12 @@ sns.pairplot(data_df[data_df['Well Name']=='SHRIMPLIN']
 ![png](/images/2020-07-08-kmeans-welllog-python/AndyWohlgenant_Final_Project_18Mar2020-Copy2_23_0.png)
 
 
-None of the scatter plots of pairs of features show obvious clusters that can be broken out visually, but I am hoping that the k-means algorithm can find meaningful clusters in the data that might yield insights into repeated patterns within the same well, as well as correlating strata from well to well.
+Several of the scatter plots of pairs of features show hints clusters that can be broken out visually, so I am hoping that the k-means algorithm can find meaningful clusters in the data that might yield insights into repeated patterns within the same well, as well as correlating strata from well to well.
 
 <a id='clustering'></a>
 ## K-means Clustering:
 
-To prepare the data for the clustering algorithm, I will start by dropping the columns that will not be used in th algorithm: Facies, Formation, Well Name, Depth, NM_M, and RELPOS.
+To prepare the data for the clustering algorithm, I will start by dropping the columns that will not be used in the algorithm: Facies, Formation, Well Name, Depth, NM_M, and RELPOS.
 
 
 ```python
@@ -647,11 +642,7 @@ fig = plt.figure(figsize = (8,8))
 ax = fig.gca()
 pd.DataFrame(scaled_clust).hist(ax=ax)
 plt.show()
-```
-
-    C:\Users\akwoh\Anaconda3\lib\site-packages\ipykernel_launcher.py:3: UserWarning: To output multiple subplots, the figure containing the passed axes is being cleared
-      This is separate from the ipykernel package so we can avoid doing imports until
-    
+```  
 
 
 ![png](/images/2020-07-08-kmeans-welllog-python/AndyWohlgenant_Final_Project_18Mar2020-Copy2_30_1.png)
@@ -676,7 +667,7 @@ clust_kmeans.fit(scaled_clust)
 
 
 
-I can extract the labels generated for the clusters and write them out to a NumPy array.
+I can extract the labels generated for the clusters and write them out to a NumPy array called 'clust_labels'.
 
 
 ```python
@@ -1094,13 +1085,3 @@ The k-means clustering method was successful at identifying groupings of observa
 While the dataset contained 9 facies classes, the _elbow method_ and _silhouette scores_ suggested a smaller number of clusters was optimal for this dataset.  The elbow method indicated suggested that 3 clusters was optimal, while the silhouette scores suggested 4-5 clusters was more appropriate.
 
 I hope to do additional work with these cluster classes to ascertain how correlative the clusters are from well to well, and how consistent the identification of clusters is in the wells.  In the meantime, thanks for reading this, and check out the interesting tutorials in the SEG github repository: https://github.com/seg/.  There are also some great blog posts over at **Agile Scientific** (https://agilescientific.com/blog) which is where I first learned about the SEG paper I mentioned in the introduction.
-
-
-```python
-
-```
-
-
-```python
-
-```
