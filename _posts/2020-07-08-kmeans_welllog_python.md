@@ -25,11 +25,15 @@ This notebook will illustrate an application of the **k-means clustering** machi
 
 Since the wells in a typical field are usually drilled through the same stratigraphic layers, grouping well log data among multiple wells could help identify correlative layers between wells by similarity in log signature.  Additionally, grouping well log samples _within a well_ can help to identify repeating assemblages of rock with common characteristics.  Such groupings may even be correlative to _facies_ designations that are usually defined from subsurface core samples.
 
-This project was undertaken in order to utilize the capabilities of the K-means clustering algorithm, an **unsupervised** machine learning algorithm, to group samples of subsurface well log data from the Hugoton natural gas field in Kansas.  The k-means algorithm is unsupervised, meaning it does not require training on already labeled data.  Instead, it attempts to group observations into _k_ clusters, where each observation is assigned to the cluster with the nearest mean or cluster centroid.
+This project was undertaken in order to utilize the capabilities of the k-means clustering algorithm, an **unsupervised machine learning** algorithm, to group samples of subsurface well log data from the Hugoton natural gas field in Kansas.  The k-means algorithm is unsupervised, meaning it does not require training on already labeled data.  Instead, it attempts to group observations into _k_ clusters, where each observation is assigned to the cluster with the nearest mean or cluster centroid.
 
 ![png](/images/seg_logo.png)<!-- -->
 
-This project was inspired by a 2016 paper in _The Leading Edge_ , the journal of the _Society of Exploration Geophysicists_ (SEG): https://library.seg.org/doi/10.1190/tle35100906.1.  In that paper, Brendon Hall demonstrated the use of a **supervised** machine learning algorithm implemented with Python in a Jupyter Notebook to classify well log data into groupings based on patterns the algorithm learned from training on labeled data.  In that case, the data labels consisted of lithofacies designations, presumably defined from core samples.  The support vector machine (SVM) algorithm was utilized in that paper to attempt to replicate the lithofacies designations in a test dataset after training on the labeled data.
+This project was inspired by a 2016 paper in _The Leading Edge_ , the journal of the _Society of Exploration Geophysicists_ (SEG).
+
+(<https://library.seg.org/doi/10.1190/tle35100906.1>)
+ 
+ In that paper, Brendon Hall demonstrated the use of a **supervised** machine learning algorithm implemented with Python in a Jupyter Notebook to classify well log data into groupings based on patterns the algorithm learned from training on labeled data.  In that case, the data labels consisted of lithofacies designations, presumably defined from core samples.  The support vector machine (SVM) algorithm was utilized in that paper to attempt to replicate the lithofacies designations in a test dataset after training on the labeled data.
 
 This project will use the same dataset as above, but approach the problem from another angle; rather than trying to duplicate the labels already assigned as _facies_ in the wells, the clustering algorithm will attempt to group log data points based on intrinsic similarity across multiple variables - the different log measurement variables.  These groupings can then be compared to the independently determined _facies_ designations.
 
