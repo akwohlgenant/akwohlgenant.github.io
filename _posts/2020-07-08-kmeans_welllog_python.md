@@ -25,7 +25,7 @@ This notebook will illustrate an application of the **k-means clustering** machi
 
 _What are well log data?_  Simply put, a well log is a detailed record of the material a well was drilled through.  The most basic well logs consist of written descriptions of the cuttings material brought up to the surface while drilling.  While these qualitative data can be very useful in establishing rock type and age, we also want to collect quantitative measurements of the rock layers drilled through.  To collect these measurements, special tools are lowered into the borehole, either on the drillstring or on wireline.  These tools measure and record a continuous record of certain properties of the rock or sediments lining the borehole.  These measurements, or _geophysical well logs_,  are the data we will be using as input to the clustering algorithm.  
 
-Below is an image from an old paper well log, thanks to the Kansas Geological Survey for the image.
+Below is an image of an old Schlumberger paper well log; thanks to the Kansas Geological Survey for the image.
 
 ![jpg](/images/1_KSLOGschlumberger.jpg)<!-- -->
 
