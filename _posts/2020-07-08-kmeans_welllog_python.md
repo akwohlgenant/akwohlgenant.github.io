@@ -1093,7 +1093,7 @@ It might be interesting to also see how the identified clusters vary from well t
 
 The k-means clustering method was successful at identifying groupings of observations of well log data using the different geophysical logs as features.  The groupings identified by clustering bore some resemblance to the predefined _Facies_ classes in the dataset, although there was not a one-to-one match between clusters and facies classes.
 
-While the dataset contained 9 facies classes, the _elbow method_ and _silhouette scores_ suggested a smaller number of clusters was optimal for this dataset.  The elbow method indicated suggested that 3 clusters was optimal, while the silhouette scores suggested 4-5 clusters was more appropriate.
+While the dataset contained 9 facies classes, the _elbow method_ and _silhouette scores_ suggested a smaller number of clusters was optimal for this dataset.  The elbow method suggested the optimal number of clusters was three, while the silhouette scores suggested 4-5 clusters was more appropriate.
 
 I hope to do additional work with these cluster classes to ascertain how correlative the clusters are from well to well, and how consistent the identification of clusters is in the wells.  In the meantime, thanks for reading this, and check out the interesting tutorials in the SEG github repository: 
 
