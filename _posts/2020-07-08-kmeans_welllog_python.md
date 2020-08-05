@@ -897,11 +897,11 @@ print('Homogeneity score: ', homogeneity_score(facies,clusters))
     Homogeneity score:  0.2965973079534308
     
 
-These scores for completeness and homogeneity of ~0.29 imply that there is not a lot of good matching between the classes predicted by clustering and the facies assigned by geologists analyzing core samples.  This isn't too surprising since the facies were not assigned from the well log data that the clustering algorithm is using for its assignment.
+These scores for completeness and homogeneity of ~0.30 imply that there is not a lot of good matching between the classes predicted by clustering and the facies assigned by geologists analyzing core samples.  This isn't too surprising since the facies were not assigned from the same data that the clustering algorithm is using for its assignment.
 
 ### Elbow method to find optimum number of clusters
 
-I can use what's called the _elbow method_ to infer the optimum number of clusters.  To do this, I run the clustering algorithm multiple times, stipulating a different number of clusters each time. Then I can plot the calculated distortion for each number of clusters and look for an 'elbow' in the plot that corresponds to the optimum number of clusters. 
+I can use what's called the _elbow method_ to infer the optimum number of clusters.  To do this, I run the clustering algorithm multiple times, specifying a different number of clusters each time. Then I can plot the calculated distortion for each number of clusters and look for an 'elbow' in the plot that corresponds to the optimum number of clusters. 
 
 
 ```python
