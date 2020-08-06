@@ -3,7 +3,7 @@ title: "ArcGIS StoryMaps: Bicycle Incidents in Washington, D.C."
 date: 2020-08-06
 tags: [GIS, ArcGIS, maps, bike safety, Washington DC, open data portal]
 header:
-image: "/images/andy-feliciotti-isg8AL7-6uk-unsplash.jpg"
+ image: "/images/andy-feliciotti-isg8AL7-6uk-unsplash.jpg"
 excerpt: "The map on the right displays a subset of Washington, D.C.'s Vision Zero Safety data"
 mathjax: "true"
 ---
