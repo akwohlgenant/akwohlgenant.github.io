@@ -28,4 +28,4 @@ The StoryMap web application lets users incorporate web maps with text and other
 
 View larger on ArcGIS.com:
 
-(<https://arcg.is/1OjyHm>)
+(<https://arcg.is/0W4f4C>)
