@@ -6,7 +6,6 @@ header:
 image: "/images/nicole-y-c-voFYl9nvG6M-unsplash.jpg"
 excerpt: "The map on the right displays a subset of Washington, D.C.'s Vision Zero Safety data"
 mathjax: "true"
-classes: wide
 ---
 
 ## Bicycle Commuter Incidents in Washington, D.C. and ArcGIS StoryMaps
@@ -21,11 +20,11 @@ The StoryMap web application lets users incorporate web maps with text and other
  
 <center>
 
-<iframe src="https://storymaps.arcgis.com/stories/272b786d941b4f438fa2f92ebf90a3d1" width="100%" height="500px" frameborder="0" allowfullscreen allow="geolocation"></iframe>
+<iframe src="https://storymaps.arcgis.com/stories/272b786d941b4f438fa2f92ebf90a3d1" width="150%" height="500px" frameborder="0" allowfullscreen allow="geolocation"></iframe>
 
 
 </center>
 
-View larger on ArcGIS.com:
+View larger format on ArcGIS.com:
 
 (<https://arcg.is/0W4f4C>)
