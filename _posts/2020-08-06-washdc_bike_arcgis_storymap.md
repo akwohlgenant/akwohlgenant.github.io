@@ -28,3 +28,5 @@ The StoryMap web application lets users incorporate web maps with text and other
 View larger format on ArcGIS.com:
 
 (<https://arcg.is/0W4f4C>)
+
+_Top photo credit: <span>Photo by <a href="https://unsplash.com/@someguy?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Andy Feliciotti</a> on <a href="https://unsplash.com/s/photos/bicycle-commuting-washington-dc?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
