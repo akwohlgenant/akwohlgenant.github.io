@@ -12,11 +12,9 @@ mathjax: "true"
 
 This is an interactive plot of rig counts in U.S. states built as a web app with Shiny in R. The data were downloaded from Baker Hughes.
 
-Need to add a link down here...
-
- (<https://www.esri.com/training/catalog/search/>)
+ (<https://rigcount.bakerhughes.com/na-rig-count>)
  
-Select a state or states and a range of dates using the slider to see the line plots rendered.
+Select a state or multiple states and a range of dates using the slider to see the line plots rendered. Colorado is selected by default; feel free to unselect it and choose the states you want to see in the plot.
  
 <center>
 
@@ -25,7 +23,13 @@ Select a state or states and a range of dates using the slider to see the line p
 
 </center>
 
-View on shinyapps website:  add link here
+The code can be found in my github repository for this post, here:
+
+ (<https://github.com/akwohlgenant/akwohlgenant.github.io/blob/master/_posts/>)
+
+View full-screen on shinyapps.io website:
+
+ (<https://andro-wohlgenant.shinyapps.io/US_RigCountsByState/>)
 
 
 <span>Photo by <a href="https://unsplash.com/@worksite?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">WORKSITE Ltd.</a> on <a href="https://unsplash.com/s/photos/oil-rig?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
