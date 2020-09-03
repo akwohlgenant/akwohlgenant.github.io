@@ -10,7 +10,9 @@ mathjax: "true"
 
 ## U.S. Land Drilling Rig Counts by State and Date Range
 
-This is an interactive plot of rig counts in U.S. states built as a web app with Shiny in R. The data were downloaded from Baker Hughes.
+First off, this isn't going to look very good or work very well on a mobile device.  It's marginally better on a mobile device if you click the link below that takes you to the shinyapps.io site where this app is hosted.  It looks better there on any device; the embedded version here doesn't really have enough space, but it at least it gives you an inkling of what the app can do.
+
+That said, this is an interactive plot of rig counts in U.S. states built as a web app with Shiny in R. The data were downloaded from Baker Hughes.
 
  (<https://rigcount.bakerhughes.com/na-rig-count>)
  
