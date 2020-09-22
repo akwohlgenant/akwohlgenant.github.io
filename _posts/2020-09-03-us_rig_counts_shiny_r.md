@@ -16,7 +16,7 @@ That said, this is an interactive plot of rig counts in U.S. states.  The data a
 
 "Baker Hughes has issued the rotary rig counts as a service to the petroleum industry since 1944, when Baker Hughes Tool Company began weekly counts of U.S. and Canadian drilling activity.  Baker Hughes initiated the monthly international rig count in 1975. The North American rig count is released weekly at noon Central Time on the last day of the work week. Starting in February 2020, the international rig count will be released on the last working day of the first week of the month.
 
-The Baker Hughes Rig Counts are an important business barometer for the drilling industry and its suppliers. When drilling rigs are active they consume products and services produced by the oil service industry. The active rig count acts as a leading indicator of demand for products used in drilling, completing, producing and processing hydrocarbons. built as a web app with Shiny in R."
+The Baker Hughes Rig Counts are an important business barometer for the drilling industry and its suppliers. When drilling rigs are active they consume products and services produced by the oil service industry. The active rig count acts as a leading indicator of demand for products used in drilling, completing, producing and processing hydrocarbons."
 
  (<https://rigcount.bakerhughes.com/na-rig-count>)
  
