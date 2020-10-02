@@ -10,7 +10,7 @@ mathjax: "true"
 
 ## U.S. Land Drilling Rig Counts by State and Date Range
 
-First off, this isn't going to look very good or work very well on a mobile device.  It's marginally better if you click the link below that takes you to the shinyapps.io site where this app is hosted.  It looks better there on any device; the embedded version here doesn't really have enough space, but it at least it gives you an inkling of what the app can do.
+First off, this app isn't going to look very good on a mobile device, especially a phone.  It's marginally better if you click the link below that takes you to the shinyapps.io site where this app is hosted.  It looks better there on any device; the embedded version here doesn't really have enough space, but it at least it gives you an inkling of what the app can do.
 
 That said, this is an interactive plot of rig counts in U.S. states.  The data are provided by Baker Hughes as an indicator of oil and gas drilling activity.  Here is some more information on the data from the Baker Hughes website:
 
@@ -20,7 +20,7 @@ That said, this is an interactive plot of rig counts in U.S. states.  The data a
 
  (<https://rigcount.bakerhughes.com/na-rig-count>)
  
-To use the interactive plot, simply select a state or multiple states and a range of dates using the slider to see the line plots rendered in the plot output. Colorado is selected by default; feel free to unselect it and choose the states you want to see in the plot.
+To use the interactive plot, simply select a state or multiple states and a range of dates using the slider to see the line plots rendered in the plot output. Colorado, North Dakota, and Wyoming are selected by default; feel free to unselect them and choose the states you want to see in the plot.
  
 <center>
 
@@ -32,6 +32,8 @@ To use the interactive plot, simply select a state or multiple states and a rang
 To view this web app in full-screen on the shinyapps.io website, click the link below:
 
  (<https://andro-wohlgenant.shinyapps.io/US_RigCountsByState/>)
+
+I'm still learning shiny and I realize this is a pretty simple little app.  Feel free to pass along any tips or ideas to make this app better.  I plan to update the source code to download the data from Baker Hughes more frequently; I realize this dataset is a little dated now.  I also hope to modify this post to include the source code to generate the app; look for that update soon!
 
 
 <span>Photo by <a href="https://unsplash.com/@worksite?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">WORKSITE Ltd.</a> on <a href="https://unsplash.com/s/photos/oil-rig?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a></span>
