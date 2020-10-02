@@ -1,3 +1,9 @@
+# A. K. Wohlgenant - Data Projects
+
+This repository is for my GitHub pages website, a place to show projects I have worked on in my own time, for my own learning purposes, or just because they are interesting to me.  Feel free to fork away, or I would welcome any comments, tips, or suggestions from anyone.  I am trying to learn as much as I can about open source tools, and I hope you will contact me if you want to discuss anything at all.
+
+This website was made using the Minimal Mistakes Jekyll Theme.  Click the link below or read below to learn more about the theme.
+
 # [Minimal Mistakes Jekyll Theme](https://mmistakes.github.io/minimal-mistakes/)
 
 [![GitHub release](https://img.shields.io/gem/v/minimal-mistakes-jekyll.svg)](https://github.com/mmistakes/minimal-mistakes/releases) [![GitHub license](https://img.shields.io/badge/license-MIT-lightgrey.svg)](https://raw.githubusercontent.com/mmistakes/minimal-mistakes/master/LICENSE.txt)
