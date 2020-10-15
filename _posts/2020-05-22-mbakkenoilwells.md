@@ -16,7 +16,7 @@ The Middle Bakken is the name of the stratigraphic interval targeted by all of t
 
 The format of this blog (or whatever this is called) is pretty narrow, so it doesn't really work well for wide format dashboards like this one.  To view it on the Tableau Public gallery, click the link below.
 
-(<https://public.tableau.com/views/NorthDakotaMiddleBakkenOilandGasWells2/Dashboard2?:language=en&:display_count=y&:origin=viz_share_link>)
+(<https://public.tableau.com/profile/andy.wohlgenant1206#!/vizhome/NorthDakotaMiddleBakkenOilandGasWells2/Dashboard2>)
 
 Please feel free to contact me with any suggestions to make this better!
  
