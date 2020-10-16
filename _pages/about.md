@@ -4,6 +4,7 @@ permalink: /about/
 header:
   image: "/images/jaromir-kavan-USBmmRQNutE-unsplash.jpg"
 ---
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
 
 I am a geoscientist and data enthusiast with interests in data wrangling, machine learning, deep learning, and creating informative visualizations from complex datasets.
 
