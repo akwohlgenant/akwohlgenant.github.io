@@ -294,8 +294,8 @@ str(gss_gt1999_f$race)
 Now it only has two levels, so it will work in the inference phase of
 the analysis.
 
-Let’s take a quick look at the means and standard deviations of the two
-races:
+Let’s take a quick look at the means and standard deviations of our 
+subsetted sample broken down by race:
 
 ``` r
 gss_gt1999_f %>%
@@ -371,8 +371,8 @@ significantly lower than the calculated mean of 20.73 years.
 
 It is noted that both histograms are slighty right-skewed. The sample
 sizes are both quite large though, so we should be able to assume that
-the sampling distributions for both race samples will be normal, and
-therefore we can use the t-distribution for inference looking at the
+the sampling distributions for both race samples will be normal. To compare
+the two samples, we can use the t-distribution for inference looking at the
 difference between two sample means.
 
 Let’s take a look at a normal probability plot, first for black
@@ -394,7 +394,7 @@ qqnorm(gss_gt1999_f_w$agekdbrn, main="Normal Q-Q Plot: White Respondents")
 ![png](/images/2020_05_08_gssdata_images/unnamed-chunk-19-1.png)<!-- -->
 
 Neither variable split plots on a straight line, indicating that the
-data are skewed (which we already knew\!)
+data are somewhat skewed (which we already knew\!)
 
 Let’s move on to the inference part.
 
@@ -407,7 +407,7 @@ black women in the GSS dataset.
 
 The t-distribution can be used for inference when working with the
 standardized diﬀerence of two means if (1) each sample meets the
-conditions for using the tdistribution and (2) the samples are
+conditions for using the t-distribution and (2) the samples are
 independent.
 
 Based on the description of the data collection in the GSS Codebook, it
@@ -416,7 +416,7 @@ and independent. It is also obvious that they make up less than 10% of
 the overall population and there are more than the minimum required
 number.
 
-The data are somewhat right-skewed, but generally appear to be normally
+The data are slightly right-skewed, but appear to be *approximately* normally
 distributed, and so the t-distribution can be used to compare the means.
 This will use a theoretical approach, not a simulation, since there are
 sufficient number of observations in the data. This will be a two-sided
@@ -445,7 +445,7 @@ Recall that the null hypothesis is that there is no difference between
 the mean age of white women and black women when their first children
 are born, such that any difference seen is due to chance.
 
-The alternative hypothesis is that there IS a difference in the mean age
+The alternative hypothesis is that there **IS** a difference in the mean age
 of white and black women when their first children are born.
 
 In this case, the t-statistic was computed to be t = 16.99 with 1,262
