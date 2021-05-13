@@ -85,13 +85,13 @@ analytics:
 
 # Site Author
 author:
-  name             : "Andy1 Wohlgenant"
+  name             : "Andy Wohlgenant"
   avatar           : "/images/profile_pic.jpg"
   bio              : "Data Projects"
   location         : "Campbell, CA"
   email            : "akwohlg@gmail.com"
   uri              :
-  home             : 
+  home             : "https://andywohlgenant.netlify.app"
   bitbucket        :
   codepen          :
   dribbble         :
