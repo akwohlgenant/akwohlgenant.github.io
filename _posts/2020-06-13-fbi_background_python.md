@@ -4,7 +4,7 @@ date: 2020-06-13
 tags: [FBI, guns, data wrangling, Python]
 header:
  image: "/images/seth-schulte-zYJ9cVjHyZA-unsplash.jpg"
-excerpt: "This project will investigate a dataset derived from the National Instant Background Check System (NICS)"
+excerpt: "Which states have the most background checks?  Find out with these data from the FBI..."
 mathjax: "true"
 ---
 
@@ -19,7 +19,7 @@ mathjax: "true"
 <a id='intro'></a>
 ## Introduction
 
-This project will use Python and several of its associated libraries in  a Jupyter Notebook to investigate a dataset derived from the National Instant Background Check System (NICS).  The NICS is a system developed by the United States Federal Bureau of Investigation (FBI) as a means to prevent firearms from falling into the wrong hands.  Here's how it works: when someone tries to buy a firearm in the United States, the seller contacts NICS, either through the internet or by telephone.  The seller submits a form filled out by the prospective buyer, and the system checks to see if the buyer has a criminal record or is otherwise ineligible to purchase a firearm. More details on the NICS system can be found on the FBI website:
+This project uses Python and several of its associated libraries in a Jupyter Notebook to investigate a dataset derived from the National Instant Background Check System (NICS).  The NICS is a system developed by the United States Federal Bureau of Investigation (FBI) as a means to prevent firearms from falling into the wrong hands.  Here's how it works: when someone tries to buy a firearm in the United States, the seller contacts NICS, either through the internet or by telephone.  The seller submits a form filled out by the prospective buyer, and the system checks to see if the buyer has a criminal record or is otherwise ineligible to purchase a firearm. More details on the NICS system can be found on the FBI website:
 
  (<https://www.fbi.gov/services/cjis/nics>)
 
