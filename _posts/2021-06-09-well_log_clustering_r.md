@@ -3,10 +3,14 @@ title: "Clustering of Well Log Data with R"
 date: 2021-06-09
 tags: [clustering, R, well log data]
 header:
- image: ""
+ image: "/images/2021-06-09-well_log_clustering_r/matt-artz-layers-unsplash.jpg"
 excerpt: ""
 mathjax: "true"
 ---
+
+*Photo by Matt Artz on Unsplash*
+
+About a year ago, I posted about using the k-means clustering algorithm in Python for well log data from oil and gas fields.  Since then, I've been spending a lot of time learning R, so I wanted to post a companion piece showing how to do some of the same processes in R.  This process will use the same data as the previous post, but show how little code it takes to do the same thing in R. 
 
 First step, import the packages we will need. For now, all we really
 need is `tidyverse` and the `useful` package that contains some handy
