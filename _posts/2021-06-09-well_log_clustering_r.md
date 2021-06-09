@@ -22,7 +22,7 @@ library(useful)
 ```
 
 Next, I’ll read in the data using the `read_csv()` function from the
-tidyverse.
+tidyverse package.
 
 ``` r
 logs <- read_csv("kgs_log_data.csv")
@@ -40,7 +40,7 @@ head(logs)
     ## 6      3 A1 SH     SHRIMPLIN   2796.  74.0     0.636     14    13.4   3.6     1
     ## # ... with 1 more variable: RELPOS <dbl>
 
-Now I will plot the logs for one of the wells. With ggplot, I can use
+Now I will plot the logs for one of the wells. With `ggplot`, I can use
 the `geom_path()` geometric object in the `ggplot` call which will
 connect the data points in order of increasing depth, and I’ll reverse
 the y-scale so that depth is inreasing downward. Let’s try this first
@@ -55,7 +55,7 @@ ggplot(shrimplin, aes(x=GR, y=Depth)) + geom_path() + theme_bw() + scale_y_rever
 
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-3-1.png)<!-- -->
 
-Now I can take advantage of the `facet_wrap()` option in ggplot to plot
+Now I can take advantage of the `facet_wrap()` option in `ggplot` to plot
 each curve side-by-side. For this to work, I will need to have each
 curve name as a variable rather than a separate column. This can be
 accomplished using the `pivot_longer()`
@@ -75,7 +75,7 @@ ggplot(shrimplin_long, aes(x=curve_value, y=Depth)) +
 
 That’s looking pretty good, but let’s reorder the curves in the plot by
 setting the factor levels for the *curve* variable. Then we can replot
-the logs for the SHRIMPLIN well. I’ll also get rid of the legend since
+the logs for the *SHRIMPLIN* well. I’ll also get rid of the legend since
 it’s not really necessary here, and I’ll add a title and a better label
 for the x-axis.
 
@@ -113,18 +113,15 @@ logs_train <- logs_noNA %>% select(GR, ILD_log10, PHIND, DeltaPHI, PE)
 ```
 
 Now I’ll use the `kmeans()` function and specify the number of clusters
-to generate. I’ll generate 9 clusters to compare to the 9 facies.
+to generate. I’ll generate 9 clusters to compare to the 9 facies already defined.
 
-``` r
-# cluster with 9 centers
+``` rs
 set.seed(13)
 logs_9clust <- kmeans(x=logs_train, centers=9)
 ```
 
-Next I can plot the kmeans object with help from the `plot.kmeans`
-function from the `useful` package. The data will be projected into two
-dimensions for
-visualization.
+Next I can plot the kmeans object I just generated with some help from the `plot.kmeans`
+function from the `useful` package. The data will be projected into two principal component dimensions for visualization.
 
 ``` r
 plot(logs_9clust, data=logs_train)
@@ -132,24 +129,21 @@ plot(logs_9clust, data=logs_train)
 
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-8-1.png)<!-- -->
 
-Now I can add the cluster labels back to the dataframe along with well
+Now I can add the cluster labels back to the dataframe that contains the well
 name, facies, etc.
 
 ``` r
 logs_noNA$Cluster <- logs_9clust$cluster
 ```
 
-I’ll reorder the log curves again, then plot the logs again, this time
-with a track for the clusters.
+I’ll reorder the log curves again, then plot the logs again for the *SHRIMPLIN* well, this time
+with an additional track for the clusters I just generated.
 
 ``` r
-# add back to log plot with cluster?
 curve_order <- c("GR", "ILD_log10", "PHIND", "DeltaPHI", "PE", "Facies", "Cluster")
 
-# plot logs with added track for cluster
 logs_noNA %>% filter(`Well Name` == "SHRIMPLIN") %>%
   select(Depth, GR, ILD_log10, PHIND, DeltaPHI, PE, Cluster, Facies) %>%
-  #filter(cluster == 9) %>%
   pivot_longer(cols=2:8, names_to="curve", values_to="value") %>%
   mutate(curve = factor(curve, levels=curve_order)) %>%
   ggplot(aes(x=value, y=Depth)) + 
@@ -163,5 +157,5 @@ logs_noNA %>% filter(`Well Name` == "SHRIMPLIN") %>%
 
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-10-1.png)<!-- -->
 
-We could do some more optimizing the number of clusters. I’ll save that
+We could do some more optimizing the number of clusters here, but I’ll save that
 for a later update.
