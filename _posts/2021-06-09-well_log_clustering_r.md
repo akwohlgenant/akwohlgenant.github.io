@@ -10,19 +10,17 @@ mathjax: "true"
 
 *Photo by Matt Artz on Unsplash*
 
-About a year ago, I posted about using the k-means clustering algorithm in Python for well log data from oil and gas fields.  Since then, I've been spending a lot of time learning R, so I wanted to post a companion piece showing how to do some of the same processes in R.  This process will use the same data as the previous post, but show how little code it takes to do the same thing in R. 
+About a year ago, I posted about using the k-means clustering algorithm in Python for well log data from oil and gas fields.  Since then, I've been spending a lot of time learning R, so I wanted to post a companion piece showing how to do some of the same things using R.  The general process is very similar, and I will use the same data as the previous post. But I will demonstrate how little code it takes to do some of the same things in R. 
 
 First step, import the packages we will need. For now, all we really
-need is `tidyverse` and the `useful` package that contains some handy
-tools for clustering and visualizing the clusters.
+need are the `tidyverse` and `useful` packages.  The `useful` package is, well, useful; it contains some handy tools for clustering and for visualizing the clusters in two dimensions.
 
 ``` r
 library(tidyverse)
 library(useful)
 ```
 
-Next, I’ll read in the data using the `read_csv()` function from the
-tidyverse package.
+Next, I’ll read in the data using the `read_csv()` function from the tidyverse package.
 
 ``` r
 logs <- read_csv("kgs_log_data.csv")
@@ -57,9 +55,8 @@ ggplot(shrimplin, aes(x=GR, y=Depth)) + geom_path() + theme_bw() + scale_y_rever
 
 Now I can take advantage of the `facet_wrap()` option in `ggplot` to plot
 each curve side-by-side. For this to work, I will need to have each
-curve name as a variable rather than a separate column. This can be
-accomplished using the `pivot_longer()`
-function.
+curve name in the data as a value for a single variable rather than as individual variables in separate columns. This can be accomplished using the `pivot_longer()`
+function from `tidyr`, which is included in the `tidyverse` package.  I'll be making the dataframe *longer* (more rows) by losing some columns (the log curve names).  The `facet_wrap()` option can only take a single column argument to facet by, so we will be faceting by "curve_name", the new column we create with `pivot_longer`.
 
 ``` r
 shrimplin_long <- pivot_longer(data=shrimplin, cols=2:6, names_to = "curve_name", values_to = "curve_value")
