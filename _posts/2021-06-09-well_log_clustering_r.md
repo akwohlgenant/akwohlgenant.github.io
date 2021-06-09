@@ -49,7 +49,7 @@ shrimplin <- logs %>% filter(`Well Name` == "SHRIMPLIN") %>% select(Depth, GR, I
 ggplot(shrimplin, aes(x=GR, y=Depth)) + geom_path() + theme_bw() + scale_y_reverse()
 ```
 
-![](kgs_log_clustering_github_files/figure-gfm/unnamed-chunk-3-1.png)<!-- -->
+![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-3-1.png)<!-- -->
 
 Now I can take advantage of the `facet_wrap()` option in ggplot to plot
 each curve side-by-side. For this to work, I will need to have each
@@ -67,7 +67,7 @@ ggplot(shrimplin_long, aes(x=curve_value, y=Depth)) +
   facet_wrap(~ curve_name, nrow=1, scales = "free_x")
 ```
 
-![](kgs_log_clustering_github_files/figure-gfm/unnamed-chunk-4-1.png)<!-- -->
+![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-4-1.png)<!-- -->
 
 That’s looking pretty good, but let’s reorder the curves in the plot by
 setting the factor levels for the *curve* variable. Then we can replot
@@ -88,7 +88,7 @@ ggplot(shrimplin_long, aes(x=curve_value, y=Depth)) +
   facet_wrap(~ curve_name, nrow=1, scales = "free_x")
 ```
 
-![](kgs_log_clustering_github_files/figure-gfm/unnamed-chunk-5-1.png)<!-- -->
+![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-5-1.png)<!-- -->
 
 That looks pretty good. Now I’ll move on to the clustering. First I’ll
 get rid of null values and select numerical variables for
@@ -126,7 +126,7 @@ visualization.
 plot(logs_9clust, data=logs_train)
 ```
 
-![](kgs_log_clustering_github_files/figure-gfm/unnamed-chunk-8-1.png)<!-- -->
+![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-8-1.png)<!-- -->
 
 Now I can add the cluster labels back to the dataframe along with well
 name, facies, etc.
@@ -157,7 +157,7 @@ logs_noNA %>% filter(`Well Name` == "SHRIMPLIN") %>%
   labs(title = "Well: SHRIMPLIN", x = "Curve Value")
 ```
 
-![](kgs_log_clustering_github_files/figure-gfm/unnamed-chunk-10-1.png)<!-- -->
+![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-10-1.png)<!-- -->
 
 We could do some more optimizing the number of clusters. I’ll save that
 for a later update.
