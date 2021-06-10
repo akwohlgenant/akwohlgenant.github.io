@@ -4,47 +4,67 @@ date: 2021-06-09
 tags: [clustering, R, well log data]
 header:
  image: "/images/2021-06-09-well_log_clustering_r/matt-artz-layers-unsplash.jpg"
-excerpt: ""
+excerpt: "About a year ago, I posted about using the k-means clustering algorithm
+in Python for well log data... so I wanted to post a companion
+piece showing how to do some of the same things using R."
 mathjax: "true"
 ---
 
 *Photo by Matt Artz on Unsplash*
 
-About a year ago, I posted about using the k-means clustering algorithm in Python for well log data from oil and gas fields.  Since then, I've been spending some time learning R, so I wanted to post a companion piece showing how to do some of the same things using R.  The general process is very similar, and I will use the same data as the previous post. But I will demonstrate how little code it takes to do some of the same things in R.  Here's what we will wind up with:
+About a year ago, I posted about using the k-means clustering algorithm
+in Python for well log data from oil and gas fields. Since then, I’ve
+been spending some time learning R, so I wanted to post a companion
+piece showing how to do some of the same things using R. The general
+process is very similar, and I will use the same data as in the previous
+post. Along the way, I will demonstrate how little code it takes to do
+some of the same things in R.
 
-![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-10-1.png)<!-- -->
-
-I want to thank **Jared Lander** and his great book *R for Everyone*.  The basic workflow for k-means clustering in R that I show here is pretty much straight out of his book, with some minor tweaks around displaying the results in a format that is familiar to folks who've worked in the oil patch.
+I want to thank **Jared Lander** and his great book *R for Everyone*.
+The basic workflow for k-means clustering in R that I show here is
+pretty much straight out of his book, with some minor tweaks around
+displaying the results in a format that is familiar to folks who’ve
+worked in the oil patch.
 
 First step, import the packages we will need. For now, all we really
-need are the `tidyverse` and `useful` packages.  The `useful` package is, well, useful; it contains some handy tools for clustering and for visualizing the clusters in two dimensions.
+need are the `tidyverse` and `useful` packages. The `useful` package is,
+well, useful\! It contains some handy tools, such as a function for
+plotting the results of K-means clustering.
 
 ``` r
 library(tidyverse)
 library(useful)
 ```
 
-Next, I’ll read in the data using the `read_csv()` function from the tidyverse package.  The data can be downloaded from the SEG Github: https://github.com/seg/tutorials-2016/tree/master/1610_Facies_classification.
+Next, I’ll read in the data using the `read_csv()` function from the
+tidyverse package, and I’ll take look at the format of the variables and
+the first few values for each.
+
+These data can be downloaded from the SEG Github:
+<https://github.com/seg/tutorials-2016/tree/master/1610_Facies_classification>.
 
 ``` r
 logs <- read_csv("kgs_log_data.csv")
-head(logs)
+glimpse(logs)
 ```
 
-    ## # A tibble: 6 x 11
-    ##   Facies Formation `Well Name` Depth    GR ILD_log10 DeltaPHI PHIND    PE  NM_M
-    ##    <dbl> <chr>     <chr>       <dbl> <dbl>     <dbl>    <dbl> <dbl> <dbl> <dbl>
-    ## 1      3 A1 SH     SHRIMPLIN   2793   77.4     0.664      9.9  11.9   4.6     1
-    ## 2      3 A1 SH     SHRIMPLIN   2794.  78.3     0.661     14.2  12.6   4.1     1
-    ## 3      3 A1 SH     SHRIMPLIN   2794   79.0     0.658     14.8  13.0   3.6     1
-    ## 4      3 A1 SH     SHRIMPLIN   2794.  86.1     0.655     13.9  13.1   3.5     1
-    ## 5      3 A1 SH     SHRIMPLIN   2795   74.6     0.647     13.5  13.3   3.4     1
-    ## 6      3 A1 SH     SHRIMPLIN   2796.  74.0     0.636     14    13.4   3.6     1
-    ## # ... with 1 more variable: RELPOS <dbl>
+    ## Rows: 4,149
+    ## Columns: 11
+    ## $ Facies      <dbl> 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2~
+    ## $ Formation   <chr> "A1 SH", "A1 SH", "A1 SH", "A1 SH", "A1 SH", "A1 SH", "A1 ~
+    ## $ `Well Name` <chr> "SHRIMPLIN", "SHRIMPLIN", "SHRIMPLIN", "SHRIMPLIN", "SHRIM~
+    ## $ Depth       <dbl> 2793.0, 2793.5, 2794.0, 2794.5, 2795.0, 2795.5, 2796.0, 27~
+    ## $ GR          <dbl> 77.45, 78.26, 79.05, 86.10, 74.58, 73.97, 73.72, 75.65, 73~
+    ## $ ILD_log10   <dbl> 0.664, 0.661, 0.658, 0.655, 0.647, 0.636, 0.630, 0.625, 0.~
+    ## $ DeltaPHI    <dbl> 9.9, 14.2, 14.8, 13.9, 13.5, 14.0, 15.6, 16.5, 16.2, 16.9,~
+    ## $ PHIND       <dbl> 11.915, 12.565, 13.050, 13.115, 13.300, 13.385, 13.930, 13~
+    ## $ PE          <dbl> 4.6, 4.1, 3.6, 3.5, 3.4, 3.6, 3.7, 3.5, 3.4, 3.5, 3.6, 3.7~
+    ## $ NM_M        <dbl> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1~
+    ## $ RELPOS      <dbl> 1.000, 0.979, 0.957, 0.936, 0.915, 0.894, 0.872, 0.830, 0.~
 
 Now I will plot the logs for one of the wells. With `ggplot`, I can use
 the `geom_path()` geometric object in the `ggplot` call which will
-connect the data points in order of increasing depth, and I’ll reverse
+connect the data points in order of increasing depth. I’ll also reverse
 the y-scale so that depth is increasing downward. Let’s try this first
 for just one well, *SHRIMPLIN*, and one log curve,
 *GR*.
@@ -57,12 +77,18 @@ ggplot(shrimplin, aes(x=GR, y=Depth)) + geom_path() + theme_bw() + scale_y_rever
 
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-3-1.png)<!-- -->
 
-Now I can take advantage of the `facet_wrap()` option in `ggplot` to plot
+Now I can take advantage of the `facet_wrap()` option in ggplot to plot
 each curve side-by-side. For this to work, I will need to have each
-curve name in the data as a value for a single variable rather than as individual variables in separate columns. This can be accomplished using the `pivot_longer()`
-function from `tidyr`, which is included in the `tidyverse` package.
+curve name as a variable rather than as individual variables in separate
+columns. This can be accomplished using the `pivot_longer()` function,
+originally from the `tidyr` package, and included with `tidyverse`.
 
-I'll be making the dataframe *longer* (more rows) by losing some columns (the log curve names).  The `facet_wrap()` option can only take a single column argument to facet by, so we will be faceting by "curve_name", the new column we create with `pivot_longer`. I'll also *free* the x-scales so that they will default to the ranges of the individual curves rather than being fixed to a single scale.
+With `pivot_longer`, I’ll be making the dataframe *longer* (more rows)
+and losing some columns (the individual log curve columns) by combining
+all curve names into one column (*curve\_name*) and all the curve values
+into one column (*curve\_value*). I’ll also *free* the x-scales so that
+each curve can have its own scale rather than sharing one common
+scale.
 
 ``` r
 shrimplin_long <- pivot_longer(data=shrimplin, cols=2:6, names_to = "curve_name", values_to = "curve_value")
@@ -77,11 +103,15 @@ ggplot(shrimplin_long, aes(x=curve_value, y=Depth)) +
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-4-1.png)<!-- -->
 
 That’s looking pretty good, but let’s reorder the curves in the plot by
-setting the factor levels for the *curve* variable. We generally plot a log on the far left that tells us something about lithology, like the gamma-ray (GR).  On the right we usually plot a resistivity curve of some kind (ILD) and a porosity curve of some kind (PHIND). 
+setting the factor levels for the *curve* variable. In the petroleum
+world, we usually plot a log on the far left that tells us something
+about lithology, like the *gamma-ray* (GR), and on the right some kind
+of *resistivity* curve (ILD) and *porosity* curve (PHIND and DeltaPHI).
+We’ll put the *photoelectric factor* (PE) curve on the far right.
 
-Then we can replot the logs for the *SHRIMPLIN* well. I’ll also get rid of the legend since
-it’s not really necessary here, and I’ll add a title and a better label
-for the x-axis.
+Then we can replot the logs for the *SHRIMPLIN* well. I’ll also get rid
+of the legend since it’s not really necessary here, and I’ll add a title
+and a better label for the x-axis.
 
 ``` r
 curve_order <- c("GR", "ILD_log10", "PHIND", "DeltaPHI", "PE")
@@ -99,7 +129,11 @@ ggplot(shrimplin_long, aes(x=curve_value, y=Depth)) +
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-5-1.png)<!-- -->
 
 That looks pretty good. Now I’ll move on to the clustering. First I’ll
-get rid of null values and select only the numerical variables for clustering.
+get rid of any null values in the data set, and then I’ll select only
+the numerical variables for clustering. I will leave out *NM\_M* and
+*RELPOS* for clustering, since these are more interpretive than the
+downhole geophysical
+    logs.
 
 ``` r
 colSums(is.na(logs))
@@ -115,36 +149,66 @@ logs_noNA <- logs %>% filter(!is.na(PE))
 logs_train <- logs_noNA %>% select(GR, ILD_log10, PHIND, DeltaPHI, PE)
 ```
 
-Now I’ll use the `kmeans()` function and specify the number of clusters
-to generate. I’ll generate 9 clusters to compare to the 9 facies already defined.
+Before performing the k-means clustering, I may want to rescale the
+variables to avoid having variables with higher magnitude values have
+larger influence on the algorithm. From our log plot above, we can see
+that the GR curve varies from near zero to more than 300, while the ILD
+curve only varies from less than 0.5 to around 1.5. This can be
+accomplished using the `scale()` function from base R, which is
+essentially performing z-score standardization.
 
-``` rs
+``` r
+logs_train <- logs_train %>% mutate_all(~(scale(.) %>% as.vector))
+head(logs_train)
+```
+
+    ## # A tibble: 6 x 5
+    ##      GR ILD_log10   PHIND DeltaPHI     PE
+    ##   <dbl>     <dbl>   <dbl>    <dbl>  <dbl>
+    ## 1 0.367    0.0880 -0.204      1.21  0.976
+    ## 2 0.393    0.0756 -0.119      2.03  0.418
+    ## 3 0.419    0.0632 -0.0563     2.15 -0.140
+    ## 4 0.647    0.0508 -0.0478     1.98 -0.251
+    ## 5 0.274    0.0177 -0.0238     1.90 -0.363
+    ## 6 0.254   -0.0278 -0.0128     2.00 -0.140
+
+Now I’ll use the `kmeans()` function and specify the number of clusters
+to generate. I’ll generate 9 clusters to compare to the 9 facies
+groupings that have already been defined in the data set, presumably by
+geologists and/or petrophysicists at the *Kansas Geological Survey*.
+
+``` r
+# cluster with 9 centers
 set.seed(13)
 logs_9clust <- kmeans(x=logs_train, centers=9)
 ```
 
-Next I can plot the kmeans object I just generated with some help from the `plot.kmeans`
-function from the `useful` package. The data will be projected into two principal component dimensions for visualization.
+Next I can plot the kmeans object with help from the `plot.kmeans`
+function from the `useful` package. The data will be projected into two
+dimensions for
+visualization.
 
 ``` r
 plot(logs_9clust, data=logs_train)
 ```
 
-![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-8-1.png)<!-- -->
+![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-9-1.png)<!-- -->
 
-Now I can add the cluster labels back to the dataframe that contains the well
+Now I can add the cluster labels back to the dataframe along with well
 name, facies, etc.
 
 ``` r
 logs_noNA$Cluster <- logs_9clust$cluster
 ```
 
-I’ll reorder the log curves again, then plot the logs again for the *SHRIMPLIN* well, this time
-with an additional track for the clusters I just generated.
+I’ll reorder the log curves again, then plot the logs again, this time
+with a track for the clusters.
 
 ``` r
+# add back to log plot with cluster?
 curve_order <- c("GR", "ILD_log10", "PHIND", "DeltaPHI", "PE", "Facies", "Cluster")
 
+# plot logs with added track for cluster
 logs_noNA %>% filter(`Well Name` == "SHRIMPLIN") %>%
   select(Depth, GR, ILD_log10, PHIND, DeltaPHI, PE, Cluster, Facies) %>%
   pivot_longer(cols=2:8, names_to="curve", values_to="value") %>%
@@ -158,7 +222,7 @@ logs_noNA %>% filter(`Well Name` == "SHRIMPLIN") %>%
   labs(title = "Well: SHRIMPLIN", x = "Curve Value")
 ```
 
-![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-10-1.png)<!-- -->
+![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-11-1.png)<!-- -->
 
-We could do some more optimizing the number of clusters here, but I’ll save that
-for a later update.
+We could do some more optimizing the number of clusters. I’ll save that
+for a later update. Thanks for reading\!
