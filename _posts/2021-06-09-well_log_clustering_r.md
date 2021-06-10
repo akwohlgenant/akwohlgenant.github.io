@@ -10,9 +10,11 @@ mathjax: "true"
 
 *Photo by Matt Artz on Unsplash*
 
-About a year ago, I posted about using the k-means clustering algorithm in Python for well log data from oil and gas fields.  Since then, I've been spending some time learning R, so I wanted to post a companion piece showing how to do some of the same things using R.  The general process is very similar, and I will use the same data as the previous post. But I will demonstrate how little code it takes to do some of the same things in R. 
+About a year ago, I posted about using the k-means clustering algorithm in Python for well log data from oil and gas fields.  Since then, I've been spending some time learning R, so I wanted to post a companion piece showing how to do some of the same things using R.  The general process is very similar, and I will use the same data as the previous post. But I will demonstrate how little code it takes to do some of the same things in R.  Here's what we will wind up with:
 
-I want to thank Jared Lander and his great book *R for Everyone*.  The basic workflow for k-means clustering in R that I show here is pretty much straight out of his book, with some minor tweaks around displaying the results in a format that is familiar to folks who've worked in the oil patch.
+![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-10-1.png)<!-- -->
+
+I want to thank **Jared Lander** and his great book *R for Everyone*.  The basic workflow for k-means clustering in R that I show here is pretty much straight out of his book, with some minor tweaks around displaying the results in a format that is familiar to folks who've worked in the oil patch.
 
 First step, import the packages we will need. For now, all we really
 need are the `tidyverse` and `useful` packages.  The `useful` package is, well, useful; it contains some handy tools for clustering and for visualizing the clusters in two dimensions.
