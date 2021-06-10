@@ -20,7 +20,7 @@ library(tidyverse)
 library(useful)
 ```
 
-Next, I’ll read in the data using the `read_csv()` function from the tidyverse package.
+Next, I’ll read in the data using the `read_csv()` function from the tidyverse package.  The data can be downloaded from the SEG Github: https://github.com/seg/tutorials-2016/tree/master/1610_Facies_classification.
 
 ``` r
 logs <- read_csv("kgs_log_data.csv")
@@ -41,7 +41,7 @@ head(logs)
 Now I will plot the logs for one of the wells. With `ggplot`, I can use
 the `geom_path()` geometric object in the `ggplot` call which will
 connect the data points in order of increasing depth, and I’ll reverse
-the y-scale so that depth is inreasing downward. Let’s try this first
+the y-scale so that depth is increasing downward. Let’s try this first
 for just one well, *SHRIMPLIN*, and one log curve,
 *GR*.
 
@@ -56,7 +56,9 @@ ggplot(shrimplin, aes(x=GR, y=Depth)) + geom_path() + theme_bw() + scale_y_rever
 Now I can take advantage of the `facet_wrap()` option in `ggplot` to plot
 each curve side-by-side. For this to work, I will need to have each
 curve name in the data as a value for a single variable rather than as individual variables in separate columns. This can be accomplished using the `pivot_longer()`
-function from `tidyr`, which is included in the `tidyverse` package.  I'll be making the dataframe *longer* (more rows) by losing some columns (the log curve names).  The `facet_wrap()` option can only take a single column argument to facet by, so we will be faceting by "curve_name", the new column we create with `pivot_longer`.
+function from `tidyr`, which is included in the `tidyverse` package.
+
+I'll be making the dataframe *longer* (more rows) by losing some columns (the log curve names).  The `facet_wrap()` option can only take a single column argument to facet by, so we will be faceting by "curve_name", the new column we create with `pivot_longer`. I'll also *free* the x-scales so that they will default to the ranges of the individual curves rather than being fixed to a single scale.
 
 ``` r
 shrimplin_long <- pivot_longer(data=shrimplin, cols=2:6, names_to = "curve_name", values_to = "curve_value")
@@ -71,8 +73,9 @@ ggplot(shrimplin_long, aes(x=curve_value, y=Depth)) +
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-4-1.png)<!-- -->
 
 That’s looking pretty good, but let’s reorder the curves in the plot by
-setting the factor levels for the *curve* variable. Then we can replot
-the logs for the *SHRIMPLIN* well. I’ll also get rid of the legend since
+setting the factor levels for the *curve* variable. We generally plot a log on the far left that tells us something about lithology, like the gamma-ray (GR).  On the right we usually plot a resistivity curve of some kind (ILD) and a porosity curve of some kind (PHIND). 
+
+Then we can replot the logs for the *SHRIMPLIN* well. I’ll also get rid of the legend since
 it’s not really necessary here, and I’ll add a title and a better label
 for the x-axis.
 
@@ -92,8 +95,7 @@ ggplot(shrimplin_long, aes(x=curve_value, y=Depth)) +
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-5-1.png)<!-- -->
 
 That looks pretty good. Now I’ll move on to the clustering. First I’ll
-get rid of null values and select numerical variables for
-    clustering.
+get rid of null values and select only the numerical variables for clustering.
 
 ``` r
 colSums(is.na(logs))
