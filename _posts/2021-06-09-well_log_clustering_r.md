@@ -78,9 +78,9 @@ ggplot(shrimplin, aes(x=GR, y=Depth)) + geom_path() + theme_bw() + scale_y_rever
 ![](/images/2021-06-09-well_log_clustering_r/unnamed-chunk-3-1.png)<!-- -->
 
 Now I can take advantage of the `facet_wrap()` option in ggplot to plot
-each curve side-by-side. For this to work, I will need to have each
-curve name as a variable rather than as individual variables in separate
-columns. This can be accomplished using the `pivot_longer()` function,
+each curve side-by-side. For this to work, I will need to have all the 
+curve names in a single column rather than as individual variables in separate
+columns. This feat can be accomplished using the `pivot_longer()` function,
 originally from the `tidyr` package, and included with `tidyverse`.
 
 With `pivot_longer`, I’ll be making the dataframe *longer* (more rows)
@@ -132,8 +132,7 @@ That looks pretty good. Now I’ll move on to the clustering. First I’ll
 get rid of any null values in the data set, and then I’ll select only
 the numerical variables for clustering. I will leave out *NM\_M* and
 *RELPOS* for clustering, since these are more interpretive than the
-downhole geophysical
-    logs.
+downhole geophysical logs.
 
 ``` r
 colSums(is.na(logs))
@@ -153,12 +152,13 @@ Before performing the k-means clustering, I may want to rescale the
 variables to avoid having variables with higher magnitude values have
 larger influence on the algorithm. From our log plot above, we can see
 that the GR curve varies from near zero to more than 300, while the ILD
-curve only varies from less than 0.5 to around 1.5. This can be
+curve only varies from less than 0.5 to around 1.5. Let's rescale all of
+the curves to a similar magnitude scale. This can be
 accomplished using the `scale()` function from base R, which is
-essentially performing z-score standardization.
+essentially performing a z-score standardization.
 
 ``` r
-logs_train <- logs_train %>% mutate_all(~(scale(.) %>% as.vector))
+logs_train <- logs_train %>% mutate_all(~(scale(.)))
 head(logs_train)
 ```
 
