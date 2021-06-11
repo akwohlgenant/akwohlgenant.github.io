@@ -12,8 +12,7 @@ mathjax: "true"
 
 *Photo by Matt Artz on Unsplash*
 
-You can check out the updated version of this post on my new personal website here:
-https://andywohlgenant.netlify.app/post/k-means-clustering-of-well-log-data/
+***You can check out the updated version of this post on my new personal [website](https://andywohlgenant.netlify.app/post/k-means-clustering-of-well-log-data/).***
 
 About a year ago, I posted about using the k-means clustering algorithm
 in Python for well log data from oil and gas fields. Since then, I’ve
