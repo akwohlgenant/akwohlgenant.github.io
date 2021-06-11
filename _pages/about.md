@@ -10,4 +10,4 @@ I have worked for more than 20 years as a geoscientist in the oil and gas indust
 
 This website is a work in progress, but I'm hoping it can serve two functions.  First, I hope anyone who is learning about data science, data analytics, visualization, or other data analysis fields might find something useful here.  Second, this site is a place for me to show projects that interest me and the methodologies I have used to attack problems.  Thanks for visiting!
 
-I have another personal website that I set up more recently through Netlify using *blogdown* in R.  It has a nicer feel and will be where I add new posts from now on.  You can find it [here](https://andywohlgenant.netlify.app/).
+I have another personal website that I set up more recently through Netlify using *blogdown* in R.  It has a nicer feel and will be where I add new posts from now on.  You can find it [here](https://andywohlgenant.netlify.app/).  See you there!
