@@ -12,6 +12,9 @@ mathjax: "true"
 
 *Photo by Matt Artz on Unsplash*
 
+You can check out the updated version of this post on my new personal website here:
+https://andywohlgenant.netlify.app/post/k-means-clustering-of-well-log-data/
+
 About a year ago, I posted about using the k-means clustering algorithm
 in Python for well log data from oil and gas fields. Since then, I’ve
 been spending some time learning R, so I wanted to post a companion
@@ -152,8 +155,9 @@ Before performing the k-means clustering, I may want to rescale the
 variables to avoid having variables with higher magnitude values have
 larger influence on the algorithm. From our log plot above, we can see
 that the GR curve varies from near zero to more than 300, while the ILD
-curve only varies from less than 0.5 to around 1.5. Let's rescale all of
-the curves to a similar magnitude scale. This can be
+curve only varies from less than 0.5 to around 1.5. 
+
+Let's rescale all of the curves to a similar magnitude scale. This can be
 accomplished using the `scale()` function from base R, which is
 essentially performing a z-score standardization.
 
