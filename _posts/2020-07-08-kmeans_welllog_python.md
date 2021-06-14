@@ -1,5 +1,5 @@
 ---
-title: "K-Means Clustering of Well Log Data"
+title: "K-Means Clustering of Well Log Data in Python"
 date: 2020-07-08
 tags: [k-means, clustering, unsupervised learning, well log, geophysical, python]
 header:
